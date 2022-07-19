@@ -11,11 +11,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
     fun onCreator(view : View) {
-        val myCreator = Intent(this, MainActivity2::class.java)
+        val myCreator = Intent(this, ActivityCreate::class.java)
         startActivity(myCreator)
     }
     fun onBouquets(view : View) {
-        val myBouquets = Intent(this, MainActivity3::class.java)
+        val myBouquets = Intent(this, ActivitySearch::class.java)
         startActivity(myBouquets)
     }
 }
