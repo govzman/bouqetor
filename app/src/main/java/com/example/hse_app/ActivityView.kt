@@ -13,7 +13,7 @@ class ActivityView : AppCompatActivity() {
         val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
-            title = "View Bouquets"
+            title = "My Bouquets"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
