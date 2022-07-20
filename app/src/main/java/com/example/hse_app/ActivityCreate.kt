@@ -13,7 +13,7 @@ class ActivityCreate : AppCompatActivity() {
         val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
-            title = "Create bouquets"
+            title = "Create Bouquets"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }

@@ -13,7 +13,7 @@ class ActivitySearch : AppCompatActivity() {
         val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
-            title = "Search bouquets"
+            title = "Search Bouquets"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
