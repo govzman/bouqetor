@@ -3,10 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
-        <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activity_main2.xml" value="0.264" />
-        <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activity_main3.xml" value="0.16458333333333333" />
-        <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/create_screen.xml" value="0.11197916666666667" />
+        <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_create.xml" value="0.1661600810536981" />
+        <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_search.xml" value="0.1661600810536981" />
+        <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_view.xml" value="0.1661600810536981" />
       </map>
     </option>
   </component>
