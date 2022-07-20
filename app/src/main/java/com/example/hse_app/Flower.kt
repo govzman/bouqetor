@@ -1,7 +1,7 @@
 package com.example.hse_app
 
 enum class Flowers{
-    Rose, Сhamomile
+    rose, chamomile
 }
 
 class Flower (val name : Flowers, var x : Int, var y : Int)
