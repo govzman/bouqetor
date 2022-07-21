@@ -50,6 +50,13 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                     else if (all_types[i] == Flowers.chamomile) current_bouquet.cnt_flowers[1] += 1
                     else if (all_types[i] == Flowers.carnation) current_bouquet.cnt_flowers[2] += 1
                     else if (all_types[i] == Flowers.chrysanthemum) current_bouquet.cnt_flowers[3] += 1
+                    else if (all_types[i] == Flowers.peony) current_bouquet.cnt_flowers[4] += 1
+                    else if (all_types[i] == Flowers.iris) current_bouquet.cnt_flowers[5] += 1
+                    else if (all_types[i] == Flowers.lily) current_bouquet.cnt_flowers[6] += 1
+                    else if (all_types[i] == Flowers.hortensia) current_bouquet.cnt_flowers[7] += 1
+                    else if (all_types[i] == Flowers.sunflower) current_bouquet.cnt_flowers[8] += 1
+
+
                     current_bouquet.current_flowers += current_flower
                 }
                 current_bouquet.MySave()
@@ -82,8 +89,8 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                 all_types += Flowers.chamomile
             } else if (item.itemId == R.id.action_carnation) {
                 newView.setImageResource(R.drawable.carnation)
-                newView.layoutParams.height = 340
-                newView.layoutParams.width = 340
+                newView.layoutParams.height = 320
+                newView.layoutParams.width = 320
                 newView.x = (this.getResources()
                     .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
                 newView.y = (this.getResources()
@@ -98,6 +105,61 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                 newView.y = (this.getResources()
                     .getDisplayMetrics().heightPixels / 2 - newView.layoutParams.width / 2).toFloat()
                 all_types += Flowers.chrysanthemum
+            } else if (item.itemId == R.id.action_peony) {
+                newView.setImageResource(R.drawable.peony)
+                newView.layoutParams.height = 300
+                newView.layoutParams.width = 300
+                newView.x = (this.getResources()
+                    .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
+                newView.y = (this.getResources()
+                    .getDisplayMetrics().heightPixels / 2 - newView.layoutParams.width / 2).toFloat()
+                all_types += Flowers.peony
+            } else if (item.itemId == R.id.action_iris) {
+                newView.setImageResource(R.drawable.iris)
+                newView.layoutParams.height = 280
+                newView.layoutParams.width = 280
+                newView.x = (this.getResources()
+                    .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
+                newView.y = (this.getResources()
+                    .getDisplayMetrics().heightPixels / 2 - newView.layoutParams.width / 2).toFloat()
+                all_types += Flowers.iris
+            } else if (item.itemId == R.id.action_lily) {
+                newView.setImageResource(R.drawable.lily)
+                newView.layoutParams.height = 280
+                newView.layoutParams.width = 280
+                newView.x = (this.getResources()
+                    .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
+                newView.y = (this.getResources()
+                    .getDisplayMetrics().heightPixels / 2 - newView.layoutParams.width / 2).toFloat()
+                all_types += Flowers.lily
+            } else if (item.itemId == R.id.action_hortensia) {
+                newView.setImageResource(R.drawable.hortensia)
+                newView.layoutParams.height = 340
+                newView.layoutParams.width = 340
+                newView.x = (this.getResources()
+                    .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
+                newView.y = (this.getResources()
+                    .getDisplayMetrics().heightPixels / 2 - newView.layoutParams.width / 2).toFloat()
+                all_types += Flowers.hortensia
+            } else if (item.itemId == R.id.action_sunflower) {
+                newView.setImageResource(R.drawable.sunflower)
+                newView.layoutParams.height = 380
+                newView.layoutParams.width = 380
+                newView.x = (this.getResources()
+                    .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
+                newView.y = (this.getResources()
+                    .getDisplayMetrics().heightPixels / 2 - newView.layoutParams.width / 2).toFloat()
+                all_types += Flowers.sunflower
+            }
+            else if (item.itemId == R.id.action_gypsophila) {
+                newView.setImageResource(R.drawable.gypsophila)
+                newView.layoutParams.height = 450
+                newView.layoutParams.width = 450
+                newView.x = (this.getResources()
+                    .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
+                newView.y = (this.getResources()
+                    .getDisplayMetrics().heightPixels / 2 - newView.layoutParams.width / 2).toFloat()
+                all_types += Flowers.gypsophila
             }
         }
         return super.onOptionsItemSelected(item)
