@@ -10,6 +10,14 @@
         app:showAsAction="never"
         android:title="Сhamomile"/>
     <item
+        android:id="@+id/action_carnation"
+        app:showAsAction="never"
+        android:title="Carnation"/>
+    <item
+        android:id="@+id/action_chrysanthemum"
+        app:showAsAction="never"
+        android:title="Chrysanthemum"/>
+    <item
         android:id="@+id/action_save"
         app:showAsAction="never"
         android:title="Save"/>
