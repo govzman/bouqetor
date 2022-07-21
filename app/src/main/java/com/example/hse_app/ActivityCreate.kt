@@ -60,8 +60,8 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
             newView = ImageView(this)
             var create_layout: ConstraintLayout = findViewById(R.id.create_layout)
             create_layout.addView(newView)
-            newView.layoutParams.height = 200
-            newView.layoutParams.width = 200
+            newView.layoutParams.height = 300
+            newView.layoutParams.width = 300
             newView.setId(global_id)
             all_id += global_id
             global_id += 1
@@ -82,8 +82,8 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                 all_types += Flowers.chamomile
             } else if (item.itemId == R.id.action_carnation) {
                 newView.setImageResource(R.drawable.carnation)
-                newView.layoutParams.height = 240
-                newView.layoutParams.width = 240
+                newView.layoutParams.height = 340
+                newView.layoutParams.width = 340
                 newView.x = (this.getResources()
                     .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
                 newView.y = (this.getResources()
@@ -91,8 +91,8 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                 all_types += Flowers.carnation
             } else if (item.itemId == R.id.action_chrysanthemum) {
                 newView.setImageResource(R.drawable.chrysanthemum)
-                newView.layoutParams.height = 255
-                newView.layoutParams.width = 255
+                newView.layoutParams.height = 340
+                newView.layoutParams.width =340
                 newView.x = (this.getResources()
                     .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
                 newView.y = (this.getResources()
