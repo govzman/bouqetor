@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
+        <entry key="..\:/TS/hse-kotlin/app/src/main/res/drawable/searchview_background.xml" value="0.2985" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_create.xml" value="0.33" />
-        <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_search.xml" value="0.17831813576494426" />
+        <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_main.xml" value="0.17831813576494426" />
+        <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_search.xml" value="0.25" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activity_create.xml" value="0.1" />
         <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
