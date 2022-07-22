@@ -22,6 +22,10 @@
             android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
+            android:name=".ActivityViewer"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ActivityView"
             android:parentActivityName=".ActivitySearch"
             android:exported="false" />
