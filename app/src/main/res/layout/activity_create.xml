@@ -9,25 +9,14 @@
     android:id="@+id/create_layout">
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="243dp"
-        android:layout_height="312dp"
-        android:layout_marginStart="256dp"
-        android:layout_marginTop="4dp"
+        android:id="@+id/imageView6"
+        android:layout_width="411dp"
+        android:layout_height="686dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/img_3096" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="340dp"
-        android:layout_height="387dp"
-        android:layout_marginTop="388dp"
-        android:layout_marginEnd="144dp"
-        android:rotation="-228"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/img_3098" />
+        app:srcCompat="@drawable/annotation_2022_07_22_130455" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
