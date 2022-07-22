@@ -1,5 +1,7 @@
 package com.example.hse_app
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,6 +11,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.gson.GsonBuilder
 
 class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
     private var dX : Float = 0.toFloat()
@@ -59,7 +62,9 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
 
                     current_bouquet.current_flowers += current_flower
                 }
-                current_bouquet.MySave()
+                MySave(current_bouquet)
+                val goto_main = Intent(this, MainActivity::class.java)
+                startActivity(goto_main)
             }
         }
         else {
@@ -179,6 +184,14 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
             else -> return false
         }
         return true
+    }
+
+    fun MySave(bouq : Bouquets) {
+        val gson = GsonBuilder().create()
+        val pref = getSharedPreferences(bouq.name, Context.MODE_PRIVATE)
+        pref.edit()
+            .putString("Bouquet", gson.toJson(bouq))
+            .apply()
     }
 }
 

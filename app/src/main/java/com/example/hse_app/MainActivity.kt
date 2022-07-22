@@ -18,4 +18,8 @@ class MainActivity : AppCompatActivity() {
         val myBouquets = Intent(this, ActivitySearch::class.java)
         startActivity(myBouquets)
     }
+    fun on_view_tmp(view : View) {
+        val myBouquets = Intent(this, ActivityView::class.java)
+        startActivity(myBouquets)
+    }
 }
