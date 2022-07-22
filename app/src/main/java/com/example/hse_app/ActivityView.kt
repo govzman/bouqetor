@@ -21,9 +21,9 @@ class ActivityView : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
-        val name : String = "First"
+        val name : String = "Second"
         var current_id = 1
-        var current_bouq : Bouquets = MyRead("First")
+        var current_bouq : Bouquets = MyRead("Second")
         for (i in current_bouq.current_flowers) {
             var newView: ImageView
             newView = ImageView(this)

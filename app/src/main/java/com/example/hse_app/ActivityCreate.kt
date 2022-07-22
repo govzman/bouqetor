@@ -7,19 +7,24 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
 
 class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
     private var dX : Float = 0.toFloat()
     private var dY : Float = 0.toFloat()
-    var current_bouquet : Bouquets = Bouquets("First")
+    var current_bouquet : Bouquets = Bouquets("null")
     var all_id : MutableList<Int> = ArrayList()
     var all_types : MutableList<Flowers> = ArrayList()
     var global_id = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
@@ -42,7 +47,6 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
         if (item.itemId == R.id.action_save) {
             if (all_id.size != 0) {
                 for (i in 0 until all_id.size) {
-                    current_bouquet.all_cnt += 1
                     var current_flower: Flower = Flower(
                         all_types[i],
                         findViewById<ImageView>(all_id[i]).x,
@@ -58,13 +62,28 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                     else if (all_types[i] == Flowers.lily) current_bouquet.cnt_flowers[6] += 1
                     else if (all_types[i] == Flowers.hortensia) current_bouquet.cnt_flowers[7] += 1
                     else if (all_types[i] == Flowers.sunflower) current_bouquet.cnt_flowers[8] += 1
-
-
                     current_bouquet.current_flowers += current_flower
                 }
-                MySave(current_bouquet)
-                val goto_main = Intent(this, MainActivity::class.java)
-                startActivity(goto_main)
+                val dialog = BottomSheetDialog(this)
+                val view = layoutInflater.inflate(R.layout.bottom_sheet_dialog, null)
+                val btnClose = view.findViewById<Button>(R.id.idBtnDismiss)
+                val btnSave = view.findViewById<Button>(R.id.idBtnAccept)
+                val txtv = view.findViewById<TextView>(R.id.idTVCourseTracks)
+                txtv.setText("Total flowers: ${current_bouquet.all_cnt}")
+
+                btnClose.setOnClickListener {
+                    dialog.dismiss()
+                }
+                btnSave.setOnClickListener {
+                    var edittext = view.findViewById<EditText>(R.id.idTVCourseDuration)
+                    current_bouquet.name = edittext.text.toString()
+                    MySave(current_bouquet)
+                    val goto_main = Intent(this, MainActivity::class.java)
+                    startActivity(goto_main)
+                }
+                dialog.setCancelable(true) // false
+                dialog.setContentView(view)
+                dialog.show()
             }
         }
         else {
@@ -77,6 +96,7 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
             newView.setId(global_id)
             all_id += global_id
             global_id += 1
+            current_bouquet.all_cnt += 1
             newView.setOnTouchListener(this)
             if (item.itemId == R.id.action_rose) {
                 newView.setImageResource(R.drawable.rose)
