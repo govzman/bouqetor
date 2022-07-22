@@ -8,6 +8,27 @@
     tools:context=".ActivityCreate"
     android:id="@+id/create_layout">
 
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="243dp"
+        android:layout_height="312dp"
+        android:layout_marginStart="256dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/img_3096" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="340dp"
+        android:layout_height="387dp"
+        android:layout_marginTop="388dp"
+        android:layout_marginEnd="144dp"
+        android:rotation="-228"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/img_3098" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -27,8 +48,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.425"
         app:srcCompat="@drawable/ellipse_1__1_" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
