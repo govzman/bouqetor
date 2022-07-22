@@ -8,6 +8,17 @@
     android:backgroundTint="#FFFFFF"
     tools:context=".ActivitySearch">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="440dp"
+        android:layout_height="694dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/annotation_2022_07_22_131248" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
