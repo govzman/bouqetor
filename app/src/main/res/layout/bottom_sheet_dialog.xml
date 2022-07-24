@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginLeft="3dp"
             android:layout_toEndOf="@id/idIVCourse"
             android:layout_toRightOf="@id/idIVCourse"
             android:text="Save bouquet"
@@ -38,6 +39,7 @@
             android:id="@+id/idTVCourseTracks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
             android:layout_below="@id/idTVCourseName"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/idIVCourse"
@@ -49,14 +51,15 @@
         <!--text view for displaying course duration-->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/idTVCourseDuration"
-            android:singleLine="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/idTVCourseTracks"
+            android:layout_marginLeft="1dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/idIVCourse"
             android:layout_toRightOf="@id/idIVCourse"
             android:hint="Type a name"
+            android:singleLine="true"
 
             android:textColor="@color/black"
             android:textSize="15sp" />

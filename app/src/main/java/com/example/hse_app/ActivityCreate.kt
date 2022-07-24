@@ -74,8 +74,11 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                 btnSave.setOnClickListener {
                     var edittext = view.findViewById<EditText>(R.id.idTVCourseDuration)
                     current_bouquet.name = edittext.text.toString()
-                    if (current_bouquet.name !in bans) {
+                    if (current_bouquet.name !in bans && current_bouquet.name !in files.all_files) {
                         MySave(current_bouquet)
+                    }
+                    else {
+                        TODO()
                     }
                     val goto_main = Intent(this, MainActivity::class.java)
                     startActivity(goto_main)
@@ -207,11 +210,26 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
 
     fun MySave(bouq : Bouquets) {
         val gson = GsonBuilder().create()
-        val pref = getSharedPreferences(bouq.name, Context.MODE_PRIVATE)
+        var pref = getSharedPreferences(bouq.name, Context.MODE_PRIVATE)
         pref.edit()
             .putString("Bouquet", gson.toJson(bouq))
             .apply()
+        files.num += 1
+        files.all_files += bouq.name
+        pref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        pref.edit()
+            .putString("settings", gson.toJson(files))
+            .apply()
+        files = LoadFiles()
+    }
+    fun LoadFiles() : Files {
+        val gson = GsonBuilder().create()
+        val pref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val tmp = pref.getString("settings", "")
+        val current_file : Files = gson.fromJson(tmp, Files::class.java)
+        return current_file
     }
 }
+
 
 
