@@ -1,21 +1,18 @@
 package com.example.hse_app
 
 import android.app.SearchManager
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.TypedValue
-import android.view.LayoutInflater
 import android.view.Menu
-import android.view.View
-import android.view.ViewGroup
 import android.widget.*
+import android.widget.AdapterView.OnItemClickListener
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.recyclerview.widget.RecyclerView
+
 
 class ActivitySearch : AppCompatActivity() {
     var displayList : MutableList<String> = ArrayList()
+    lateinit var mListView : ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +25,15 @@ class ActivitySearch : AppCompatActivity() {
             setDisplayShowHomeEnabled(true)
         }
         displayList.addAll(files.all_files)
+        mListView = findViewById<ListView>(R.id.userlist)
+        var arrayAdapter = ArrayAdapter(this,
+            R.layout.mytextview, displayList)
+        mListView.adapter = arrayAdapter
+        mListView.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
+            val new_activity = Intent(this@ActivitySearch, ActivityView::class.java)
+            new_activity.putExtra("name", displayList[id.toInt()])
+            startActivity(new_activity)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -46,33 +52,27 @@ class ActivitySearch : AppCompatActivity() {
                 val new_activity = Intent(this@ActivitySearch, ActivityView::class.java)
                 new_activity.putExtra("name", query)
                 startActivity(new_activity)
-                //i.putExtra("key",value)
-                /*Toast.makeText(this@MainActivity, "Looking for $query", Toast.LENGTH_LONG).show()
-                val ind = query?.let { names.indexOf(it.lowercase()) }
-                if (ind == -1) {
-                    tx.setTextSize(TypedValue.COMPLEX_UNIT_SP, (32).toFloat())
-                    tx.setText("Not found")
-                    tx.setVisibility(TextView.VISIBLE)
-                    im.setVisibility(ImageView.INVISIBLE)
-                }
-                else {
-                    tx.setTextSize(TypedValue.COMPLEX_UNIT_SP, (32).toFloat())
-                    if (ind != null) {
-                        tx.setText("Name: ${characters[ind].name}\nSpecies: ${characters[ind].species}\nGender: ${characters[ind].gender}\n" +
-                                "Status: ${characters[ind].status}\nId: ${characters[ind].id}")
-                        im.setImageBitmap(characters[ind].img)
-                        im.setVisibility(ImageView.VISIBLE)
-                    }
-                    tx.setVisibility(TextView.VISIBLE)
-                }*/
                 return true
             }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                return false
+            override fun onQueryTextChange(newText: String?): Boolean {
+                displayList.clear()
+                if(newText!!.isNotEmpty()){
+                    val search = newText.toLowerCase()
+                    files.all_files.forEach {
+                        if(it.toLowerCase().contains(search)){
+                            displayList.add(it)
+                        }
+                    }
+                }else{
+                    displayList.addAll(files.all_files)
+                }
+                mListView.invalidateViews()
+                return true
             }
-
         })
         return true
     }
 }
+
+
