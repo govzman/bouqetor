@@ -1,22 +1,17 @@
-package com.example.hse_app.model3D.view;
+package com.example.hse_app;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.hse_app.model3D.demo.ExampleSceneLoader;
-import com.example.hse_app.model3D.demo.SceneLoader;
-import com.example.hse_app.R;
+
 import org.andresoviedo.util.android.ContentUtils;
 
 import java.io.IOException;
@@ -57,8 +52,6 @@ public class ModelActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
 
         // Try to get input parameters
         Bundle b = getIntent().getExtras();
