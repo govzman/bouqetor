@@ -59,6 +59,9 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                     else if (all_types[i] == Flowers.lily) current_bouquet.cnt_flowers[6] += 1
                     else if (all_types[i] == Flowers.hortensia) current_bouquet.cnt_flowers[7] += 1
                     else if (all_types[i] == Flowers.sunflower) current_bouquet.cnt_flowers[8] += 1
+                    else if (all_types[i] == Flowers.ruscus) current_bouquet.cnt_flowers[9] += 1
+                    else if (all_types[i] == Flowers.dianthus) current_bouquet.cnt_flowers[10] += 1
+                    else if (all_types[i] == Flowers.trachelium) current_bouquet.cnt_flowers[10] += 1
                     current_bouquet.current_flowers += current_flower
                 }
                 val dialog = BottomSheetDialog(this)
@@ -74,8 +77,11 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                 btnSave.setOnClickListener {
                     var edittext = view.findViewById<EditText>(R.id.idTVCourseDuration)
                     current_bouquet.name = edittext.text.toString()
-                    if (current_bouquet.name !in bans) {
+                    if (current_bouquet.name !in bans && current_bouquet.name !in files.all_files) {
                         MySave(current_bouquet)
+                    }
+                    else {
+                        TODO()
                     }
                     val goto_main = Intent(this, MainActivity::class.java)
                     startActivity(goto_main)
@@ -185,6 +191,36 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                     .getDisplayMetrics().heightPixels / 2 - newView.layoutParams.width / 2).toFloat()
                 all_types += Flowers.gypsophila
             }
+            else if (item.itemId == R.id.action_ruscus) {
+                newView.setImageResource(R.drawable.ruscus)
+                newView.layoutParams.height = 500
+                newView.layoutParams.width = 500
+                newView.x = (this.getResources()
+                    .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
+                newView.y = (this.getResources()
+                    .getDisplayMetrics().heightPixels / 2 - newView.layoutParams.width / 2).toFloat()
+                all_types += Flowers.ruscus
+            }
+            else if (item.itemId == R.id.action_dianthus) {
+                newView.setImageResource(R.drawable.dianthus)
+                newView.layoutParams.height = 400
+                newView.layoutParams.width = 400
+                newView.x = (this.getResources()
+                    .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
+                newView.y = (this.getResources()
+                    .getDisplayMetrics().heightPixels / 2 - newView.layoutParams.width / 2).toFloat()
+                all_types += Flowers.dianthus
+            }
+            else if (item.itemId == R.id.action_trachelium) {
+                newView.setImageResource(R.drawable.trachelium)
+                newView.layoutParams.height = 320
+                newView.layoutParams.width = 320
+                newView.x = (this.getResources()
+                    .getDisplayMetrics().widthPixels / 2 - newView.layoutParams.height / 2).toFloat()
+                newView.y = (this.getResources()
+                    .getDisplayMetrics().heightPixels / 2 - newView.layoutParams.width / 2).toFloat()
+                all_types += Flowers.trachelium
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -207,11 +243,26 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
 
     fun MySave(bouq : Bouquets) {
         val gson = GsonBuilder().create()
-        val pref = getSharedPreferences(bouq.name, Context.MODE_PRIVATE)
+        var pref = getSharedPreferences(bouq.name, Context.MODE_PRIVATE)
         pref.edit()
             .putString("Bouquet", gson.toJson(bouq))
             .apply()
+        files.num += 1
+        files.all_files += bouq.name
+        pref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        pref.edit()
+            .putString("settings", gson.toJson(files))
+            .apply()
+        files = LoadFiles()
+    }
+    fun LoadFiles() : Files {
+        val gson = GsonBuilder().create()
+        val pref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val tmp = pref.getString("settings", "")
+        val current_file : Files = gson.fromJson(tmp, Files::class.java)
+        return current_file
     }
 }
+
 
 

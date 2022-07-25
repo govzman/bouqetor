@@ -21,35 +21,41 @@ class ActivityView : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
-        val name : String = "Second"
-        var current_id = 1
-        var current_bouq : Bouquets = MyRead("Second")
-        for (i in current_bouq.current_flowers) {
-            var newView: ImageView
-            newView = ImageView(this)
-            var create_layout: ConstraintLayout = findViewById(R.id.create_layout)
-            create_layout.addView(newView)
-            newView.setId(current_id)
-            current_id += 1
-            newView.layoutParams.height = i.size
-            newView.layoutParams.width = i.size
-            newView.x = i.x
-            newView.y = i.y
-            val icon = when(i.name) {
-                Flowers.rose -> R.drawable.rose
-                Flowers.chamomile -> R.drawable.chamomile
-                Flowers.carnation -> R.drawable.carnation
-                Flowers.chrysanthemum -> R.drawable.chrysanthemum
-                Flowers.iris -> R.drawable.iris
-                Flowers.peony -> R.drawable.peony
-                Flowers.lily -> R.drawable.lily
-                Flowers.sunflower -> R.drawable.sunflower
-                Flowers.hortensia -> R.drawable.hortensia
-                Flowers.gypsophila -> R.drawable.gypsophila
+        val name : String? = intent.getStringExtra("name")
+        if (name != null) {
+            var current_id = 1
+            var current_bouq: Bouquets = MyRead(name)
+            for (i in current_bouq.current_flowers) {
+                var newView: ImageView
+                newView = ImageView(this)
+                var create_layout: ConstraintLayout = findViewById(R.id.create_layout)
+                create_layout.addView(newView)
+                newView.setId(current_id)
+                current_id += 1
+                newView.layoutParams.height = i.size
+                newView.layoutParams.width = i.size
+                newView.x = i.x
+                newView.y = i.y
+                val icon = when (i.name) {
+                    Flowers.rose -> R.drawable.rose
+                    Flowers.chamomile -> R.drawable.chamomile
+                    Flowers.carnation -> R.drawable.carnation
+                    Flowers.chrysanthemum -> R.drawable.chrysanthemum
+                    Flowers.iris -> R.drawable.iris
+                    Flowers.peony -> R.drawable.peony
+                    Flowers.lily -> R.drawable.lily
+                    Flowers.sunflower -> R.drawable.sunflower
+                    Flowers.hortensia -> R.drawable.hortensia
+                    Flowers.gypsophila -> R.drawable.gypsophila
+                    Flowers.ruscus -> R.drawable.ruscus
+                    Flowers.dianthus -> R.drawable.dianthus
+                    Flowers.trachelium -> R.drawable.trachelium
+                }
+                newView.setImageResource(icon)
             }
-            newView.setImageResource(icon)
         }
     }
+
 
     fun MyRead(name : String) : Bouquets {
         val gson = GsonBuilder().create()

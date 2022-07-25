@@ -42,6 +42,18 @@
         app:showAsAction="never"
         android:title="Gypsophila"/>
     <item
+        android:id="@+id/action_ruscus"
+        app:showAsAction="never"
+        android:title="Ruscus"/>
+    <item
+        android:id="@+id/action_dianthus"
+        app:showAsAction="never"
+        android:title="Dianthus"/>
+    <item
+        android:id="@+id/action_trachelium"
+        app:showAsAction="never"
+        android:title="Trachelium"/>
+    <item
         android:id="@+id/action_save"
         app:showAsAction="never"
         android:title="Save"/>

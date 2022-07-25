@@ -2,18 +2,18 @@ package com.example.hse_app
 
 import android.app.SearchManager
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.Menu
-import android.view.View
-import android.widget.ImageView
-import android.widget.SearchView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import android.widget.AdapterView.OnItemClickListener
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 
+
 class ActivitySearch : AppCompatActivity() {
+    var displayList : MutableList<String> = ArrayList()
+    lateinit var mListView : ListView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -24,46 +24,55 @@ class ActivitySearch : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
+        displayList.addAll(files.all_files)
+        mListView = findViewById<ListView>(R.id.userlist)
+        var arrayAdapter = ArrayAdapter(this,
+            R.layout.mytextview, displayList)
+        mListView.adapter = arrayAdapter
+        mListView.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
+            val new_activity = Intent(this@ActivitySearch, ActivityView::class.java)
+            new_activity.putExtra("name", displayList[id.toInt()])
+            startActivity(new_activity)
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.search, menu)
-        /*val manager = getSystemService(SEARCH_SERVICE) as SearchManager
-        val searchItem = menu?.findItem(R.id.search)
-        val searchView = searchItem?.actionView as SearchView
+        val manager = getSystemService(SEARCH_SERVICE) as SearchManager
+        val searchItem = menu?.findItem(R.id.menu_search)
+        val searchView = searchItem?.actionView as androidx.appcompat.widget.SearchView
         searchView.setSearchableInfo(manager.getSearchableInfo(componentName))
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.clearFocus()
                 searchView.setQuery("", false)
                 searchItem.collapseActionView()
-                Toast.makeText(this@MainActivity, "Looking for $query", Toast.LENGTH_LONG).show()
-                val ind = query?.let { names.indexOf(it.lowercase()) }
-                if (ind == -1) {
-                    tx.setTextSize(TypedValue.COMPLEX_UNIT_SP, (32).toFloat())
-                    tx.setText("Not found")
-                    tx.setVisibility(TextView.VISIBLE)
-                    im.setVisibility(ImageView.INVISIBLE)
-                }
-                else {
-                    tx.setTextSize(TypedValue.COMPLEX_UNIT_SP, (32).toFloat())
-                    if (ind != null) {
-                        tx.setText("Name: ${characters[ind].name}\nSpecies: ${characters[ind].species}\nGender: ${characters[ind].gender}\n" +
-                                "Status: ${characters[ind].status}\nId: ${characters[ind].id}")
-                        im.setImageBitmap(characters[ind].img)
-                        im.setVisibility(ImageView.VISIBLE)
-                    }
-                    tx.setVisibility(TextView.VISIBLE)
-                }
+                val new_activity = Intent(this@ActivitySearch, ActivityView::class.java)
+                new_activity.putExtra("name", query)
+                startActivity(new_activity)
                 return true
             }
 
-            override fun onQueryTextChange(p0: String?): Boolean {
-                return false
+            override fun onQueryTextChange(newText: String?): Boolean {
+                displayList.clear()
+                if(newText!!.isNotEmpty()){
+                    val search = newText.toLowerCase()
+                    files.all_files.forEach {
+                        if(it.toLowerCase().startsWith(search)){
+                            displayList.add(it)
+                        }
+                    }
+                }else{
+                    displayList.addAll(files.all_files)
+                }
+                mListView.invalidateViews()
+                return true
             }
-        })*/
+        })
         return true
     }
 }
+
+
