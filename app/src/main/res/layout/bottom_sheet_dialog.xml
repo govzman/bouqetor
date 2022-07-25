@@ -76,7 +76,7 @@
             android:layout_marginBottom="10dp"
             android:text="Cancel"
             android:textAllCaps="false"
-            android:textSize = "18dp"/>
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/idBtnAccept"

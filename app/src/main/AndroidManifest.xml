@@ -7,9 +7,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/projecticon"
+        android:icon="@drawable/newicon"
         android:label="@string/name"
-        android:roundIcon="@drawable/projecticon"
+        android:roundIcon="@drawable/newicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Hse_app"
         tools:targetApi="31">
