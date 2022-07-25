@@ -4,13 +4,22 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.TextKeyListener.clear
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
 
 class ActivityView : AppCompatActivity() {
+    lateinit var name : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
@@ -21,8 +30,8 @@ class ActivityView : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
-        val name : String? = intent.getStringExtra("name")
-        if (name != null) {
+        name = intent.getStringExtra("name") ?: ""
+        if (name != "") {
             var current_id = 1
             var current_bouq: Bouquets = MyRead(name)
             for (i in current_bouq.current_flowers) {
@@ -56,7 +65,37 @@ class ActivityView : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menuview, menu)
+        return true
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_info) {
+            val myCreator = Intent(this, ActivityInfo::class.java)
+            startActivity(myCreator)
+        }
+        else if (item.itemId == R.id.action_erase) {
+            val dialog = BottomSheetDialog(this)
+            val view = layoutInflater.inflate(R.layout.bottom_sheet_delete, null)
+            val btnClose = view.findViewById<Button>(R.id.idBtnDismiss)
+            val btnSave = view.findViewById<Button>(R.id.idBtnAccept)
+            btnClose.setOnClickListener {
+                dialog.dismiss()
+            }
+            btnSave.setOnClickListener {
+                MyDelete(name)
+                dialog.dismiss()
+                val goto_main = Intent(this, ActivitySearch::class.java)
+                startActivity(goto_main)
+            }
+            dialog.setCancelable(false) // false
+            dialog.setContentView(view)
+            dialog.show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
     fun MyRead(name : String) : Bouquets {
         val gson = GsonBuilder().create()
         val pref = getSharedPreferences(name, Context.MODE_PRIVATE)
@@ -66,5 +105,28 @@ class ActivityView : AppCompatActivity() {
             return bouq
         }
         return Bouquets("null")
+    }
+    fun MyDelete(name : String) {
+        files.num -= 1
+        files.all_files.remove(name)
+        var pref = getSharedPreferences(name, Context.MODE_PRIVATE)
+        pref.edit().clear().commit()
+        MySave()
+        files = LoadFiles()
+    }
+    fun MySave() {
+        val gson = GsonBuilder().create()
+        var pref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        pref.edit()
+            .putString("settings", gson.toJson(files))
+            .apply()
+        files = LoadFiles()
+    }
+    fun LoadFiles() : Files {
+        val gson = GsonBuilder().create()
+        val pref = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+        val tmp = pref.getString("settings", "")
+        val current_file : Files = gson.fromJson(tmp, Files::class.java)
+        return current_file
     }
 }

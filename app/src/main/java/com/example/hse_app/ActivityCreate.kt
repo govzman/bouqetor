@@ -83,12 +83,24 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                     else {
                         TODO()
                     }
+                    dialog.dismiss()
                     val goto_main = Intent(this, MainActivity::class.java)
                     startActivity(goto_main)
                 }
-                dialog.setCancelable(true) // false
+                dialog.setCancelable(false) // false
                 dialog.setContentView(view)
                 dialog.show()
+            }
+        }
+        else if (item.itemId == R.id.action_delete) {
+            if (global_id != 1) {
+                var newView: ImageView = findViewById(global_id - 1)
+                var create_layout: ConstraintLayout = findViewById(R.id.create_layout)
+                create_layout.removeView(newView)
+                global_id -= 1
+                current_bouquet.all_cnt -= 1
+                all_id.removeLast()
+                all_types.removeLast()
             }
         }
         else {
