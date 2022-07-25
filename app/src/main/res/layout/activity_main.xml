@@ -86,7 +86,7 @@
         android:shadowColor="#000000"
         android:shadowDx="-8"
         android:shadowDy="-6"
-        android:shadowRadius="2"
+        android:shadowRadius="0"
         android:text="Bouqueter"
         android:textColor="#78ace8"
         android:textSize="60sp"
