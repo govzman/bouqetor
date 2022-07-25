@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.hse_app.model3D.view.ModelActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(myBouquets)
     }
     fun onViewer(view : View) {
-        val myViewer = Intent(this, ActivityViewer::class.java)
+        val myViewer = Intent(this, ModelActivity::class.java)
         startActivity(myViewer)
     }
     fun on_view_tmp(view : View) {
