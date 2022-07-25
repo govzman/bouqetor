@@ -29,6 +29,10 @@
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
+            android:name=".ModelActivity"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ActivityView"
             android:parentActivityName=".ActivitySearch"
             android:exported="false"
