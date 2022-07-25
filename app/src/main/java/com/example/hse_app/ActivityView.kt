@@ -47,6 +47,9 @@ class ActivityView : AppCompatActivity() {
                     Flowers.sunflower -> R.drawable.sunflower
                     Flowers.hortensia -> R.drawable.hortensia
                     Flowers.gypsophila -> R.drawable.gypsophila
+                    Flowers.ruscus -> R.drawable.ruscus
+                    Flowers.dianthus -> R.drawable.dianthus
+                    Flowers.trachelium -> R.drawable.trachelium
                 }
                 newView.setImageResource(icon)
             }
