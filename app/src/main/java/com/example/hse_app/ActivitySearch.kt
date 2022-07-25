@@ -60,7 +60,7 @@ class ActivitySearch : AppCompatActivity() {
                 if(newText!!.isNotEmpty()){
                     val search = newText.toLowerCase()
                     files.all_files.forEach {
-                        if(it.toLowerCase().contains(search)){
+                        if(it.toLowerCase().startsWith(search)){
                             displayList.add(it)
                         }
                     }
