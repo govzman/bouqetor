@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(myBouquets)
     }
     fun onViewer(view : View) {
-        val myViewer = Intent(this, ActivityViewer::class.java)
+        val myViewer = Intent(this, ModelActivity::class.java)
         startActivity(myViewer)
     }
     fun on_view_tmp(view : View) {
