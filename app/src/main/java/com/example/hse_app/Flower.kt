@@ -1,7 +1,7 @@
 package com.example.hse_app
 
 enum class Flowers{
-    rose, chamomile, carnation, chrysanthemum, iris, peony, lily, sunflower, hortensia, gypsophila
+    rose, chamomile, carnation, chrysanthemum, iris, peony, lily, sunflower, hortensia, gypsophila, ruscus, dianthus, trachelium
 }
 
 val bans : List<String> = listOf("Settings")
