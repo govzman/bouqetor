@@ -16,6 +16,7 @@ import org.andresoviedo.android_3d_model_engine.services.wavefront.WavefrontLoad
 import org.andresoviedo.android_3d_model_engine.services.wavefront.WavefrontLoader.Materials;
 import org.andresoviedo.android_3d_model_engine.services.wavefront.WavefrontLoader.Tuple3;
 import org.andresoviedo.util.android.ContentUtils;
+import org.andresoviedo.util.android.assets.Handler;
 import org.andresoviedo.util.io.IOUtils;
 import org.andresoviedo.util.math.Math3DUtils;
 
@@ -24,6 +25,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLStreamHandler;
+import java.net.URLStreamHandlerFactory;
 import java.nio.BufferOverflowException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -413,6 +416,15 @@ public final class Object3DBuilder {
 	public static Object3DData loadV5(Activity activity, Uri modelUri) {
 		try {
 			//final String modelId = assetDir + "/" + assetFilename;
+			URL.setURLStreamHandlerFactory(new URLStreamHandlerFactory() {
+				@Override
+				public URLStreamHandler createURLStreamHandler(String protocol) {
+					if ("assets".equals(protocol)){
+						return new Handler();
+					}
+					return null;
+				}
+			});
 
 			InputStream is = new URL(modelUri.toString()).openStream();
 			WavefrontLoader wfl = new WavefrontLoader(modelUri.toString());

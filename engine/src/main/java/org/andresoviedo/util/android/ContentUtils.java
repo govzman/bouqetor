@@ -11,6 +11,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
+import org.andresoviedo.util.android.assets.Handler;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +20,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
+import java.net.URLStreamHandler;
+import java.net.URLStreamHandlerFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

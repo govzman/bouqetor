@@ -1,8 +1,11 @@
 package com.example.hse_app;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
 import org.andresoviedo.android_3d_model_engine.model.Object3DData;
 import org.andresoviedo.android_3d_model_engine.services.Object3DBuilder;
@@ -15,7 +18,7 @@ import java.util.List;
 
 /**
  * This class loads a 3D scene as an example of what can be done with the app
- * 
+ *
  * @author andresoviedo
  *
  */
@@ -31,8 +34,18 @@ public class ExampleSceneLoader extends SceneLoader {
 		super.init();
 		new AsyncTask<Void, Void, Void>() {
 
+            ProgressDialog dialog = new ProgressDialog(parent);
 			List<Exception> errors = new ArrayList<>();
 
+
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                dialog.setCancelable(false);
+                dialog.setMessage("Loading demo...");
+                dialog.show();
+            }
 
             @Override
             protected Void doInBackground(Void... params) {
@@ -41,15 +54,10 @@ public class ExampleSceneLoader extends SceneLoader {
                     ContentUtils.setThreadActivity(parent);
                     ContentUtils.provideAssets(parent);
 
-                    // test cube made of arrays
-                    Object3DData obj10 = Object3DBuilder.buildCubeV1();
-                    obj10.setColor(new float[] { 1f, 0f, 0f, 0.5f });
-                    obj10.setPosition(new float[] { -2f, 2f, 0f });
-                    addObject(obj10);
-
                     try {
                         // this has heterogeneous faces
-                        Object3DData obj53 = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/ToyPlane.obj"));
+
+                        Object3DData obj53 = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/tulip.obj"));
                         //InputStream open = ContentUtils.getInputStream(Uri.parse("assets://assets/models/"+obj53.getTextureFile()));
                         //obj53.setTextureData(IOUtils.read(open));
                         obj53.centerAndScale(2.0f);
@@ -59,6 +67,7 @@ public class ExampleSceneLoader extends SceneLoader {
                         addObject(obj53);
                     } catch (Exception ex) {
                         errors.add(ex);
+                        Log.e("Example", ex.getMessage(), ex);
                     }
 
                     // test loading object without normals
@@ -79,6 +88,22 @@ public class ExampleSceneLoader extends SceneLoader {
                 return null;
             }
 
+
+            @Override
+            protected void onPostExecute(Void result) {
+                super.onPostExecute(result);
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+                if (!errors.isEmpty()) {
+                    StringBuilder msg = new StringBuilder("There was a problem loading the data");
+                    for (Exception error : errors) {
+                        Log.e("Example", error.getMessage(), error);
+                        msg.append("\n" + error.getMessage());
+                    }
+                    Toast.makeText(parent.getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                }
+            }
 		}.execute();
 
         // test loading collada object
