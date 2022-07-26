@@ -119,10 +119,10 @@ public class ModelRenderer implements GLSurfaceView.Renderer {
 	@Override
 	public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 		// Set the background frame color
-		//float[] backgroundColor = main.getModelActivity().getBackgroundColor();
+		float[] backgroundColor = main.getModelActivity().getBackgroundColor();
 		//Log.d(TAG, String.valueOf(backgroundColor[0]) + " " + String.valueOf(backgroundColor[1]) + " " + String.valueOf(backgroundColor[2]) + " " + String.valueOf(backgroundColor[3]));
-		//GLES20.glClearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
-		GLES20.glClearColor(0.47f, 0.67f, 0.9f, 1.0f);
+		GLES20.glClearColor(backgroundColor[0], backgroundColor[1], backgroundColor[2], backgroundColor[3]);
+		//GLES20.glClearColor(0.47f, 0.67f, 0.9f, 1.0f);
 
 		// Use culling to remove back faces.
 		// Don't remove back faces so we can see them

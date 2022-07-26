@@ -9,9 +9,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import org.andresoviedo.util.android.ContentUtils
 import java.io.IOException
 
@@ -36,12 +38,12 @@ class ModelActivity : AppCompatActivity() {
     /**
      * Enter into Android Immersive mode so the renderer is full screen or not
      */
-    private var immersiveMode = true
+    private var immersiveMode = false
 
     /**
      * Background GL clear color. Default is light gray
      */
-    val backgroundColor = floatArrayOf(0f, 0f, 0f, 1.0f)
+    val backgroundColor = floatArrayOf(0.47f, 0.67f, 0.9f, 1.0f)
     var gLView: ModelSurfaceView? = null
         private set
     var scene: SceneLoader? = null
@@ -80,15 +82,21 @@ class ModelActivity : AppCompatActivity() {
         // Create a GLSurfaceView instance and set it
         // as the ContentView for this Activity.
         try {
-            val gLView = ModelSurfaceView(this)
-            setContentView(gLView)
-            val toolbar : android.widget.Toolbar = android.widget.Toolbar(this)
-            //setSupportActionBar(toolbar)
+            setContentView(R.layout.activity_viewer)
+            val toolbar : Toolbar = findViewById(R.id.toolbar)
+            setSupportActionBar(toolbar)
             supportActionBar?.apply {
-                title = "Search Bouquets"
+                title = "My Bouquets"
                 setDisplayHomeAsUpEnabled(true)
                 setDisplayShowHomeEnabled(true)
             }
+            var gLView = ModelSurfaceView(this)
+            var create_layout: ConstraintLayout = findViewById(R.id.create_layout)
+            create_layout.addView(gLView)
+            //create_layout.addView(gLView)
+            //gLView.setId(1)
+            //setContentView(create_layout)
+
 
         } catch (e: Exception) {
             Toast.makeText(
