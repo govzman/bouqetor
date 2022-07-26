@@ -1,18 +1,24 @@
 package com.example.hse_app
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
+
 
 class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
     private var dX : Float = 0.toFloat()
@@ -23,20 +29,25 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
     var global_id = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // удаление цветков за границей экрана
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
         val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
-            title = "Bouquets Creator"
+            title = "Creator"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
+
         }
     }
-
+    
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
+        if (menu is MenuBuilder) {
+            menu.setOptionalIconsVisible(true)
+        }
         return true
     }
 
