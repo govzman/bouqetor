@@ -1,18 +1,24 @@
 package com.example.hse_app
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
+
 
 class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
     private var dX : Float = 0.toFloat()
@@ -23,20 +29,26 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
     var global_id = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // удаление цветков за границей экрана
+        // свайпает в неправильную сторону
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
         val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
-            title = "Bouquets Creator"
+            title = "Creator"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
+
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
+        if (menu is MenuBuilder) {
+            menu.setOptionalIconsVisible(true)
+        }
         return true
     }
 
@@ -83,15 +95,27 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                     else {
                         TODO()
                     }
+                    dialog.dismiss()
                     val goto_main = Intent(this, MainActivity::class.java)
                     startActivity(goto_main)
                 }
-                dialog.setCancelable(true) // false
+                dialog.setCancelable(false) // false
                 dialog.setContentView(view)
                 dialog.show()
             }
         }
-        else {
+        else if (item.itemId == R.id.action_delete) {
+            if (global_id != 1) {
+                var newView: ImageView = findViewById(global_id - 1)
+                var create_layout: ConstraintLayout = findViewById(R.id.create_layout)
+                create_layout.removeView(newView)
+                global_id -= 1
+                current_bouquet.all_cnt -= 1
+                all_id.removeLast()
+                all_types.removeLast()
+            }
+        }
+        else if (item.itemId != R.id.filter_flowers) {
             var newView: ImageView
             newView = ImageView(this)
             var create_layout: ConstraintLayout = findViewById(R.id.create_layout)

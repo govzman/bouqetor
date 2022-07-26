@@ -15,6 +15,7 @@ class ActivitySearch : AppCompatActivity() {
     lateinit var mListView : ListView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // android.view.WindowLeaked: Activity com.example.hse_app.ActivityView has leaked window DecorView@4d032a0[ActivityView] that was originally added here
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
         val toolbar : Toolbar = findViewById(R.id.toolbar)
