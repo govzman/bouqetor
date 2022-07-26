@@ -30,6 +30,7 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // удаление цветков за границей экрана
+        // свайпает в неправильную сторону
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
         val toolbar : Toolbar = findViewById(R.id.toolbar)

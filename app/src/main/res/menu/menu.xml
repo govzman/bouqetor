@@ -22,6 +22,7 @@
             <item
                 android:id="@+id/action_rose"
                 app:showAsAction="never"
+                android:icon="@mipmap/ic_rose_icon"
                 android:title="Rose"/>
             <item
                 android:id="@+id/action_chamomile"
