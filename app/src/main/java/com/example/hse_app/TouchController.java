@@ -180,6 +180,7 @@ public class TouchController {
             scene.processTouch(x1,y1);
 		}
 
+
 		int max = Math.max(mRenderer.getWidth(), mRenderer.getHeight());
 		if (touchDelay > 1) {
 			// INFO: Process gesture

@@ -45,6 +45,7 @@ class ModelActivity : AppCompatActivity() {
      */
     val backgroundColor = floatArrayOf(0.47f, 0.67f, 0.9f, 1.0f)
     var gLView: ModelSurfaceView? = null
+
         private set
     var scene: SceneLoader? = null
         private set
