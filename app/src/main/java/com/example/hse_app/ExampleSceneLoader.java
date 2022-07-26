@@ -57,10 +57,10 @@ public class ExampleSceneLoader extends SceneLoader {
                     try {
                         // this has heterogeneous faces
 
-                        Object3DData obj53 = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/tulip.obj"));
+                        Object3DData obj53 = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/tuple.obj"));
                         //InputStream open = ContentUtils.getInputStream(Uri.parse("assets://assets/models/"+obj53.getTextureFile()));
                         //obj53.setTextureData(IOUtils.read(open));
-                        obj53.centerAndScale(2.0f);
+                        obj53.centerAndScale(4.0f);
                         obj53.setPosition(new float[] { 0f, 0f, 0f });
                         obj53.setColor(new float[] { 1.0f, 1.0f, 1f, 1.0f });
                         // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);

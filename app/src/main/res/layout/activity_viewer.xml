@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:backgroundTint="#FFFFFF"
-    tools:context=".ActivityViewer">
+    tools:context=".ActivityViewer"
+    android:id="@+id/create_layout">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"

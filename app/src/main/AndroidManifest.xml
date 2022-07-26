@@ -31,7 +31,8 @@
         <activity
             android:name=".ModelActivity"
             android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ActivityView"
             android:parentActivityName=".ActivitySearch"
