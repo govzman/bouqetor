@@ -26,50 +26,62 @@
                 android:title="Rose"/>
             <item
                 android:id="@+id/action_chamomile"
+                android:icon="@mipmap/ic_chamomile_icon"
                 app:showAsAction="never"
                 android:title="Сhamomile"/>
             <item
                 android:id="@+id/action_carnation"
+                android:icon="@mipmap/ic_carnation_icon"
                 app:showAsAction="never"
                 android:title="Carnation"/>
             <item
                 android:id="@+id/action_chrysanthemum"
+                android:icon="@mipmap/ic_chrysanthemum_icon"
                 app:showAsAction="never"
                 android:title="Chrysanthemum"/>
             <item
                 android:id="@+id/action_peony"
+                android:icon="@mipmap/ic_peony_icon"
                 app:showAsAction="never"
                 android:title="Peony"/>
             <item
                 android:id="@+id/action_iris"
+                android:icon="@mipmap/ic_iris_icon"
                 app:showAsAction="never"
                 android:title="Iris"/>
             <item
                 android:id="@+id/action_lily"
+                android:icon="@mipmap/ic_lily_icon"
                 app:showAsAction="never"
                 android:title="Lily"/>
             <item
                 android:id="@+id/action_hortensia"
+                android:icon="@mipmap/ic_hortensia_icon"
                 app:showAsAction="never"
                 android:title="Hortensia"/>
             <item
                 android:id="@+id/action_sunflower"
+                android:icon="@mipmap/ic_sunflower_icon"
                 app:showAsAction="never"
                 android:title="Sunflower"/>
             <item
                 android:id="@+id/action_gypsophila"
+                android:icon="@mipmap/ic_gypsophila_icon"
                 app:showAsAction="never"
                 android:title="Gypsophila"/>
             <item
                 android:id="@+id/action_ruscus"
+                android:icon="@mipmap/ic_ruscus_icon"
                 app:showAsAction="never"
                 android:title="Ruscus"/>
             <item
                 android:id="@+id/action_dianthus"
+                android:icon="@mipmap/ic_dianthus_icon"
                 app:showAsAction="never"
                 android:title="Dianthus"/>
             <item
                 android:id="@+id/action_trachelium"
+                android:icon="@mipmap/ic_trachelium_icon"
                 app:showAsAction="never"
                 android:title="Trachelium"/>
             />
