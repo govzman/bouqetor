@@ -41,7 +41,7 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
 
         }
     }
-    
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.menu, menu)
@@ -114,7 +114,7 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                 all_types.removeLast()
             }
         }
-        else {
+        else if (item.itemId == R.id.filter_flowers) {
             var newView: ImageView
             newView = ImageView(this)
             var create_layout: ConstraintLayout = findViewById(R.id.create_layout)
