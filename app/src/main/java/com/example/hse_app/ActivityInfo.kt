@@ -49,7 +49,7 @@ class ActivityInfo : AppCompatActivity() {
         }
         cur_t += "Total price: "
         cur_t += price.toString()
-        cur_t += " rub"
+        cur_t += "₽"
         txtv.setText(cur_t)
     }
     override fun onOptionsItemSelected(item : MenuItem) : Boolean {
