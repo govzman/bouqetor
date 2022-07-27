@@ -19,21 +19,21 @@ import com.google.gson.GsonBuilder
 
 class ActivityView : AppCompatActivity() {
     lateinit var name : String
-
+    lateinit var current_bouq: Bouquets
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
         val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        name = intent.getStringExtra("name") ?: ""
         supportActionBar?.apply {
-            title = "My Bouquets"
+            title = name
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
-        name = intent.getStringExtra("name") ?: ""
         if (name != "") {
             var current_id = 1
-            var current_bouq: Bouquets = MyRead(name)
+            current_bouq = MyRead(name)
             for (i in current_bouq.current_flowers) {
                 var newView: ImageView
                 newView = ImageView(this)
@@ -74,7 +74,15 @@ class ActivityView : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_info) {
             val myCreator = Intent(this, ActivityInfo::class.java)
+            myCreator.putExtra("name", name)
+            val gson = GsonBuilder().create()
+            myCreator.putExtra("bouq", gson.toJson(current_bouq))
             startActivity(myCreator)
+        }
+        else if (item.itemId == R.id.action_3d) {
+            val myViewer = Intent(this, ModelActivity::class.java)
+            myViewer.putExtra("name", name)
+            startActivity(myViewer)
         }
         else if (item.itemId == R.id.action_erase) {
             val dialog = BottomSheetDialog(this)

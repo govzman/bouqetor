@@ -15,13 +15,14 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.259"
         app:srcCompat="@drawable/img_3123" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="174dp"
         android:layout_height="94dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="92dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +43,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.837" />
+        app:layout_constraintVertical_bias="0.827" />
 
     <Button
         android:id="@+id/buttonSearch"
@@ -58,7 +59,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.621" />
+        app:layout_constraintVertical_bias="0.604" />
 
     <Button
         android:id="@+id/buttonSearch2"
@@ -66,15 +67,16 @@
         android:layout_height="92dp"
         android:backgroundTint="#78ace8"
         android:onClick="onViewer"
-        android:text="3D Viewer"
+        android:text="Settings"
         android:textSize="25sp"
+        android:visibility="visible"
         app:cornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSearch"
-        app:layout_constraintVertical_bias="0.348" />
+        app:layout_constraintVertical_bias="0.378" />
 
     /*EC7A7A*/
 

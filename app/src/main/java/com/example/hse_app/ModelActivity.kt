@@ -52,7 +52,8 @@ class ModelActivity : AppCompatActivity() {
     private var handler: Handler? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        scene = null
+        handler = null
         // Try to get input parameters
         val b = intent.extras
         if (b != null) {
@@ -76,10 +77,14 @@ class ModelActivity : AppCompatActivity() {
         handler = Handler(mainLooper)
 
         // Create our 3D sceneario
-        scene = ExampleSceneLoader(this)
-        (scene as ExampleSceneLoader).init()
-
-
+        var name : String = intent.getStringExtra("name") ?: ""
+        try {
+            scene = ExampleSceneLoader(this, name)
+            (scene as ExampleSceneLoader).init()
+        }
+        catch (e : Exception) {
+            // пустота
+        }
         // Create a GLSurfaceView instance and set it
         // as the ContentView for this Activity.
         try {
@@ -87,7 +92,7 @@ class ModelActivity : AppCompatActivity() {
             val toolbar : Toolbar = findViewById(R.id.toolbar)
             setSupportActionBar(toolbar)
             supportActionBar?.apply {
-                title = "My Bouquets"
+                title = "3D Viewer"
                 setDisplayHomeAsUpEnabled(true)
                 setDisplayShowHomeEnabled(true)
             }
