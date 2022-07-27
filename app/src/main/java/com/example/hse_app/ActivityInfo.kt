@@ -1,23 +1,17 @@
 package com.example.hse_app
 
-import android.content.Context
+import android.app.SearchManager
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
 
 class ActivityInfo : AppCompatActivity() {
     var cur_b : Bouquets = Bouquets("null")
+    var name : String? = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activityinfo)
@@ -28,7 +22,7 @@ class ActivityInfo : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
-        var name : String = intent.getStringExtra("name") ?: ""
+        name = intent.getStringExtra("name") ?: ""
         var raw : String? = intent.getStringExtra("bouq") ?: null
         if (raw != null) {
             val gson = GsonBuilder().create()
@@ -57,5 +51,15 @@ class ActivityInfo : AppCompatActivity() {
         cur_t += price.toString()
         cur_t += " rub"
         txtv.setText(cur_t)
+    }
+    override fun onOptionsItemSelected(item : MenuItem) : Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                val new_activity = Intent(this@ActivityInfo, ActivityView::class.java)
+                new_activity.putExtra("name", name)
+                startActivity(new_activity)
+            }
+        }
+        return true
     }
 }
