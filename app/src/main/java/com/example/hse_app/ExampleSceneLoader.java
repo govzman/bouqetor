@@ -10,9 +10,13 @@ import android.widget.Toast;
 import org.andresoviedo.android_3d_model_engine.model.Object3DData;
 import org.andresoviedo.android_3d_model_engine.services.Object3DBuilder;
 import org.andresoviedo.util.android.ContentUtils;
+import org.andresoviedo.util.android.assets.Handler;
 import org.andresoviedo.util.io.IOUtils;
 
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLStreamHandler;
+import java.net.URLStreamHandlerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +36,26 @@ public class ExampleSceneLoader extends SceneLoader {
 	@SuppressLint("StaticFieldLeak")
     public void init() {
 		super.init();
+
+        URL.setURLStreamHandlerFactory(new URLStreamHandlerFactory() {
+            @Override
+            public URLStreamHandler createURLStreamHandler(String protocol) {
+                if ("assets".equals(protocol)){
+                    return new Handler();
+                }
+                return null;
+            }
+        });
+
 		new AsyncTask<Void, Void, Void>() {
 
             //ProgressDialog dialog = new ProgressDialog(parent);
 			List<Exception> errors = new ArrayList<>();
 
 
-        /*
+
+
+            /*
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -57,41 +74,20 @@ public class ExampleSceneLoader extends SceneLoader {
                     try {
                         // this has heterogeneous faces
                         List<Object3DData> objects = new ArrayList<>();
-                        for (int i=0; i<1; i++) {
-                            Object3DData obj53 = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/tuple.obj"));
-                            //InputStream open = ContentUtils.getInputStream(Uri.parse("assets://assets/models/"+obj53.getTextureFile()));
-                            //obj53.setTextureData(IOUtils.read(open));
-                            obj53.centerAndScale(4.0f);
-                            obj53.setPosition(new float[] { 0f, 0f, 0f });
+
+                        // this has heterogeneous faces
+                        Object3DData obj53;
+                        
+                        for (int i=0; i<6; i++){
+                            obj53 = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/tuple.obj"));
+                            obj53.centerAndScale(2.0f);
+                            obj53.setPosition(new float[] { 0.5f * i, 0f, 0f });
                             obj53.setColor(new float[] { 1.0f, 1.0f, 1f, 1.0f });
                             // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
-                            objects.add(obj53);
+                            addObject(obj53);
                         }
-                        for (int i=0; i<objects.size(); i++) {
-                            addObject(objects.get(i));
-                        }
-/*
-                        Object3DData obj53 = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/tuple.obj"));
-                        //InputStream open = ContentUtils.getInputStream(Uri.parse("assets://assets/models/"+obj53.getTextureFile()));
-                        //obj53.setTextureData(IOUtils.read(open));
-                        obj53.centerAndScale(4.0f);
-                        obj53.setPosition(new float[] { 0f, 0f, 0f });
-                        obj53.setColor(new float[] { 1.0f, 1.0f, 1f, 1.0f });
-                        // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
-                        addObject(obj53);
 
-                        /*
-                        Object3DData obj54 = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/teapot.obj"));
-                        //InputStream open = ContentUtils.getInputStream(Uri.parse("assets://assets/models/"+obj53.getTextureFile()));
-                        //obj53.setTextureData(IOUtils.read(open));
-                        obj54.centerAndScale(4.0f);
-                        obj54.setPosition(new float[] { 0f, 0f, 0f });
-                        obj54.setPosition(new float[] { 30f, 30f, 30f});
-                        obj54.setColor(new float[] { 1.0f, 1.0f, 1f, 1.0f });
-                        // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
-                        addObject(obj54);
-
-                         */
+  
                     } catch (Exception ex) {
                         errors.add(ex);
                         Log.e("Example", ex.getMessage() + "!!!", ex);
