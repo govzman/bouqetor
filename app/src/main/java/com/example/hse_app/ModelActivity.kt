@@ -87,7 +87,7 @@ class ModelActivity : AppCompatActivity() {
             val toolbar : Toolbar = findViewById(R.id.toolbar)
             setSupportActionBar(toolbar)
             supportActionBar?.apply {
-                title = "My Bouquets"
+                title = "3D Viewer"
                 setDisplayHomeAsUpEnabled(true)
                 setDisplayShowHomeEnabled(true)
             }
