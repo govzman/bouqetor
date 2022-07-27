@@ -76,7 +76,8 @@ class ModelActivity : AppCompatActivity() {
         handler = Handler(mainLooper)
 
         // Create our 3D sceneario
-        scene = ExampleSceneLoader(this)
+        var name : String = intent.getStringExtra("name") ?: ""
+        scene = ExampleSceneLoader(this, name)
         (scene as ExampleSceneLoader).init()
 
 

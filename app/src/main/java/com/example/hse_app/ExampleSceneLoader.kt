@@ -36,7 +36,7 @@ import java.lang.Math.asin
  *
  * @author andresoviedo
  */
-class ExampleSceneLoader(modelActivity: ModelActivity?) : SceneLoader(modelActivity) {
+class ExampleSceneLoader(modelActivity: ModelActivity?, val name_f: String = "") : SceneLoader(modelActivity) {
     // TODO: fix this warning
     @SuppressLint("StaticFieldLeak")
     override fun init() {
@@ -49,7 +49,7 @@ class ExampleSceneLoader(modelActivity: ModelActivity?) : SceneLoader(modelActiv
         object : AsyncTask<Void?, Void?, Void?>() {
             //ProgressDialog dialog = new ProgressDialog(parent);
             var errors: MutableList<Exception> = ArrayList()
-            lateinit var name : String
+
             val width = parent.getResources().getDisplayMetrics().widthPixels / 2 - 150
             val height = parent.getResources().getDisplayMetrics().heightPixels / 2 - 150
             /*
@@ -70,7 +70,7 @@ class ExampleSceneLoader(modelActivity: ModelActivity?) : SceneLoader(modelActiv
                         val objects: List<Object3DData> = ArrayList()
                         var obj53: Object3DData
                         //name = intent.getStringExtra("name") ?: ""
-                        name = "for mom"
+                        var name : String = name_f
                         var count = 0
                         if (name != "") {
                             var current_bouq: Bouquets = MyRead(name)
