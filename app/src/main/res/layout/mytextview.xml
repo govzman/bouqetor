@@ -6,5 +6,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:textSize="27sp"
-    android:textColor="@color/black"
-    />
+    android:textColor="#42434c"
+    android:drawableLeft="@mipmap/ic_null_icon"
+    android:gravity="center_vertical"
+    android:drawablePadding="2dp" />
