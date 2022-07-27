@@ -6,6 +6,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 
+import androidx.annotation.Nullable;
+
 import org.andresoviedo.android_3d_model_engine.animation.Animator;
 import org.andresoviedo.android_3d_model_engine.collision.CollisionDetection;
 import org.andresoviedo.android_3d_model_engine.model.Camera;
@@ -477,25 +479,28 @@ public class SceneLoader implements LoaderTask.Callback {
     }
 
     public void processTouch(float x, float y) {
-        ModelRenderer mr = parent.getGLView().getModelRenderer();
-        Object3DData objectToSelect = CollisionDetection.getBoxIntersection(getObjects(), mr.getWidth(), mr.getHeight
-                (), mr.getModelViewMatrix(), mr.getModelProjectionMatrix(), x, y);
-        if (objectToSelect != null) {
-            if (getSelectedObject() == objectToSelect) {
-                Log.i("SceneLoader", "Unselected object " + objectToSelect.getId());
-                setSelectedObject(null);
-            } else {
-                Log.i("SceneLoader", "Selected object " + objectToSelect.getId());
-                setSelectedObject(objectToSelect);
-            }
-            if (isCollision()) {
-                Log.d("SceneLoader", "Detecting collision...");
+        if (parent.getGLView() != null) {
+            // TODO
+            ModelRenderer mr = parent.getGLView().getModelRenderer();
+            Object3DData objectToSelect = CollisionDetection.getBoxIntersection(getObjects(), mr.getWidth(), mr.getHeight
+                    (), mr.getModelViewMatrix(), mr.getModelProjectionMatrix(), x, y);
+            if (objectToSelect != null) {
+                if (getSelectedObject() == objectToSelect) {
+                    Log.i("SceneLoader", "Unselected object " + objectToSelect.getId());
+                    setSelectedObject(null);
+                } else {
+                    Log.i("SceneLoader", "Selected object " + objectToSelect.getId());
+                    setSelectedObject(objectToSelect);
+                }
+                if (isCollision()) {
+                    Log.d("SceneLoader", "Detecting collision...");
 
-                float[] point = CollisionDetection.getTriangleIntersection(getObjects(), mr.getWidth(), mr.getHeight
-                        (), mr.getModelViewMatrix(), mr.getModelProjectionMatrix(), x, y);
-                if (point != null) {
-                    Log.i("SceneLoader", "Drawing intersection point: " + Arrays.toString(point));
-                    addObject(Object3DBuilder.buildPoint(point).setColor(new float[]{1.0f, 0f, 0f, 1f}));
+                    float[] point = CollisionDetection.getTriangleIntersection(getObjects(), mr.getWidth(), mr.getHeight
+                            (), mr.getModelViewMatrix(), mr.getModelProjectionMatrix(), x, y);
+                    if (point != null) {
+                        Log.i("SceneLoader", "Drawing intersection point: " + Arrays.toString(point));
+                        addObject(Object3DBuilder.buildPoint(point).setColor(new float[]{1.0f, 0f, 0f, 1f}));
+                    }
                 }
             }
         }

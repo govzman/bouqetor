@@ -11,9 +11,13 @@ import org.andresoviedo.android_3d_model_engine.model.Object3DData;
 import org.andresoviedo.android_3d_model_engine.services.Object3DBuilder;
 import com.example.hse_app.model3D.view.ModelActivity;
 import org.andresoviedo.util.android.ContentUtils;
+import org.andresoviedo.util.android.assets.Handler;
 import org.andresoviedo.util.io.IOUtils;
 
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLStreamHandler;
+import java.net.URLStreamHandlerFactory;
 import java.util.ArrayList;
 import java.util.List;
 

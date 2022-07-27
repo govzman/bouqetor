@@ -416,16 +416,7 @@ public final class Object3DBuilder {
 	public static Object3DData loadV5(Activity activity, Uri modelUri) {
 		try {
 			//final String modelId = assetDir + "/" + assetFilename;
-			URL.setURLStreamHandlerFactory(new URLStreamHandlerFactory() {
-				@Override
-				public URLStreamHandler createURLStreamHandler(String protocol) {
-					if ("assets".equals(protocol)){
-						return new Handler();
-					}
-					return null;
-				}
-			});
-
+			Log.i("!!!!", modelUri.toString());
 			InputStream is = new URL(modelUri.toString()).openStream();
 			WavefrontLoader wfl = new WavefrontLoader(modelUri.toString());
 			wfl.analyzeModel(is);

@@ -10,9 +10,13 @@ import android.widget.Toast;
 import org.andresoviedo.android_3d_model_engine.model.Object3DData;
 import org.andresoviedo.android_3d_model_engine.services.Object3DBuilder;
 import org.andresoviedo.util.android.ContentUtils;
+import org.andresoviedo.util.android.assets.Handler;
 import org.andresoviedo.util.io.IOUtils;
 
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLStreamHandler;
+import java.net.URLStreamHandlerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,21 +36,34 @@ public class ExampleSceneLoader extends SceneLoader {
 	@SuppressLint("StaticFieldLeak")
     public void init() {
 		super.init();
+
+        URL.setURLStreamHandlerFactory(new URLStreamHandlerFactory() {
+            @Override
+            public URLStreamHandler createURLStreamHandler(String protocol) {
+                if ("assets".equals(protocol)){
+                    return new Handler();
+                }
+                return null;
+            }
+        });
+
 		new AsyncTask<Void, Void, Void>() {
 
-            ProgressDialog dialog = new ProgressDialog(parent);
+            //ProgressDialog dialog = new ProgressDialog(parent);
 			List<Exception> errors = new ArrayList<>();
 
 
 
+
+            /*
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
                 dialog.setCancelable(false);
-                dialog.setMessage("Loading demo...");
+                dialog.setMessage("Loading bouquet...");
                 dialog.show();
             }
-
+*/
             @Override
             protected Void doInBackground(Void... params) {
                 try {
@@ -55,30 +72,24 @@ public class ExampleSceneLoader extends SceneLoader {
                     ContentUtils.provideAssets(parent);
 
                     try {
-                        // this has heterogeneous faces
 
-                        Object3DData obj53 = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/tuple.obj"));
-                        //InputStream open = ContentUtils.getInputStream(Uri.parse("assets://assets/models/"+obj53.getTextureFile()));
-                        //obj53.setTextureData(IOUtils.read(open));
-                        obj53.centerAndScale(4.0f);
-                        obj53.setPosition(new float[] { 0f, 0f, 0f });
-                        obj53.setColor(new float[] { 1.0f, 1.0f, 1f, 1.0f });
-                        // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
-                        addObject(obj53);
+                        List<Object3DData> objects = new ArrayList<>();
+
+                        // this has heterogeneous faces
+                        Object3DData obj53;
+                        
+                        for (int i=0; i<6; i++){
+                            obj53 = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/tuple.obj"));
+                            obj53.centerAndScale(2.0f);
+                            obj53.setPosition(new float[] { 0.5f * i, 0f, 0f });
+                            obj53.setColor(new float[] { 1.0f, 1.0f, 1f, 1.0f });
+                            // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
+                            addObject(obj53);
+                        }
                     } catch (Exception ex) {
                         errors.add(ex);
-                        Log.e("Example", ex.getMessage(), ex);
                     }
 
-                    // test loading object without normals
-                    /*try {
-                        Object3DData obj = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/cube4.obj"));
-                        obj.setPosition(new float[] { 0f, 2f, -2f });
-                        obj.setColor(new float[] { 0.3f, 0.52f, 1f, 1.0f });
-                        addObject(obj);
-                    } catch (Exception ex) {
-                        errors.add(ex);
-                    }*/
                 } catch (Exception ex) {
                     errors.add(ex);
                 } finally{
@@ -92,9 +103,9 @@ public class ExampleSceneLoader extends SceneLoader {
             @Override
             protected void onPostExecute(Void result) {
                 super.onPostExecute(result);
-                if (dialog.isShowing()) {
-                    dialog.dismiss();
-                }
+//                if (dialog.isShowing()) {
+//                    dialog.dismiss();
+//                }
                 if (!errors.isEmpty()) {
                     StringBuilder msg = new StringBuilder("There was a problem loading the data");
                     for (Exception error : errors) {
