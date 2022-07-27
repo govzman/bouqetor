@@ -11,7 +11,6 @@ import org.andresoviedo.util.android.ContentUtils
 import org.andresoviedo.android_3d_model_engine.model.Object3DData
 import org.andresoviedo.android_3d_model_engine.services.Object3DBuilder
 import org.andresoviedo.util.android.assets.Handler
-import java.lang.Exception
 import java.lang.StringBuilder
 import java.net.URL
 import java.util.ArrayList
@@ -30,6 +29,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
 import java.lang.Math.asin
+import kotlin.Exception
 
 /**
  * This class loads a 3D scene as an example of what can be done with the app
@@ -41,10 +41,15 @@ class ExampleSceneLoader(modelActivity: ModelActivity?, val name_f: String = "")
     @SuppressLint("StaticFieldLeak")
     override fun init() {
         super.init()
-        URL.setURLStreamHandlerFactory { protocol ->
-            if ("assets" == protocol) {
-                Handler()
-            } else null
+        try {
+                URL.setURLStreamHandlerFactory { protocol ->
+                if ("assets" == protocol) {
+                    Handler()
+                } else null
+            }
+        }
+        catch (e : Error) {
+            // пусто
         }
         object : AsyncTask<Void?, Void?, Void?>() {
             //ProgressDialog dialog = new ProgressDialog(parent);

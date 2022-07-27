@@ -52,7 +52,8 @@ class ModelActivity : AppCompatActivity() {
     private var handler: Handler? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        scene = null
+        handler = null
         // Try to get input parameters
         val b = intent.extras
         if (b != null) {
@@ -77,10 +78,13 @@ class ModelActivity : AppCompatActivity() {
 
         // Create our 3D sceneario
         var name : String = intent.getStringExtra("name") ?: ""
-        scene = ExampleSceneLoader(this, name)
-        (scene as ExampleSceneLoader).init()
-
-
+        try {
+            scene = ExampleSceneLoader(this, name)
+            (scene as ExampleSceneLoader).init()
+        }
+        catch (e : Exception) {
+            // пустота
+        }
         // Create a GLSurfaceView instance and set it
         // as the ContentView for this Activity.
         try {
