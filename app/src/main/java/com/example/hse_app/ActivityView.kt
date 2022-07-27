@@ -79,6 +79,11 @@ class ActivityView : AppCompatActivity() {
             myCreator.putExtra("bouq", gson.toJson(current_bouq))
             startActivity(myCreator)
         }
+        else if (item.itemId == R.id.action_3d) {
+            val myViewer = Intent(this, ModelActivity::class.java)
+            myViewer.putExtra("name", name)
+            startActivity(myViewer)
+        }
         else if (item.itemId == R.id.action_erase) {
             val dialog = BottomSheetDialog(this)
             val view = layoutInflater.inflate(R.layout.bottom_sheet_delete, null)
