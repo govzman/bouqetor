@@ -72,7 +72,7 @@ public class ExampleSceneLoader extends SceneLoader {
                     ContentUtils.provideAssets(parent);
 
                     try {
-                        // this has heterogeneous faces
+
                         List<Object3DData> objects = new ArrayList<>();
 
                         // this has heterogeneous faces
@@ -86,22 +86,10 @@ public class ExampleSceneLoader extends SceneLoader {
                             // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
                             addObject(obj53);
                         }
-
-  
                     } catch (Exception ex) {
                         errors.add(ex);
-                        Log.e("Example", ex.getMessage() + "!!!", ex);
                     }
 
-                    // test loading object without normals
-                    /*try {
-                        Object3DData obj = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/cube4.obj"));
-                        obj.setPosition(new float[] { 0f, 2f, -2f });
-                        obj.setColor(new float[] { 0.3f, 0.52f, 1f, 1.0f });
-                        addObject(obj);
-                    } catch (Exception ex) {
-                        errors.add(ex);
-                    }*/
                 } catch (Exception ex) {
                     errors.add(ex);
                 } finally{
