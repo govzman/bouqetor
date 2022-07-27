@@ -416,7 +416,7 @@ public final class Object3DBuilder {
 	public static Object3DData loadV5(Activity activity, Uri modelUri) {
 		try {
 			//final String modelId = assetDir + "/" + assetFilename;
-			Log.i("!!!!", modelUri.toString());
+//			Log.i("!!!!", modelUri.toString());
 			InputStream is = new URL(modelUri.toString()).openStream();
 			WavefrontLoader wfl = new WavefrontLoader(modelUri.toString());
 			wfl.analyzeModel(is);

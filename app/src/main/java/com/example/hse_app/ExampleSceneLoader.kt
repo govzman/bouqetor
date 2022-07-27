@@ -1,60 +1,57 @@
-package com.example.hse_app;
+package com.example.hse_app
 
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.Toast;
-
-import org.andresoviedo.android_3d_model_engine.model.Object3DData;
-import org.andresoviedo.android_3d_model_engine.services.Object3DBuilder;
-import org.andresoviedo.util.android.ContentUtils;
-import org.andresoviedo.util.android.assets.Handler;
-import org.andresoviedo.util.io.IOUtils;
-
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLStreamHandler;
-import java.net.URLStreamHandlerFactory;
-import java.util.ArrayList;
-import java.util.List;
+import android.annotation.SuppressLint
+import android.net.Uri
+import android.os.AsyncTask
+import android.util.Log
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import org.andresoviedo.util.android.ContentUtils
+import org.andresoviedo.android_3d_model_engine.model.Object3DData
+import org.andresoviedo.android_3d_model_engine.services.Object3DBuilder
+import org.andresoviedo.util.android.assets.Handler
+import java.lang.Exception
+import java.lang.StringBuilder
+import java.net.URL
+import java.util.ArrayList
+import android.content.Context
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.text.method.TextKeyListener.clear
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.GsonBuilder
+import java.lang.Math.asin
 
 /**
  * This class loads a 3D scene as an example of what can be done with the app
  *
  * @author andresoviedo
- *
  */
-public class ExampleSceneLoader extends SceneLoader {
-
-	public ExampleSceneLoader(ModelActivity modelActivity) {
-		super(modelActivity);
-	}
-
-	// TODO: fix this warning
-	@SuppressLint("StaticFieldLeak")
-    public void init() {
-		super.init();
-
-        URL.setURLStreamHandlerFactory(new URLStreamHandlerFactory() {
-            @Override
-            public URLStreamHandler createURLStreamHandler(String protocol) {
-                if ("assets".equals(protocol)){
-                    return new Handler();
-                }
-                return null;
-            }
-        });
-
-		new AsyncTask<Void, Void, Void>() {
-
+class ExampleSceneLoader(modelActivity: ModelActivity?) : SceneLoader(modelActivity) {
+    // TODO: fix this warning
+    @SuppressLint("StaticFieldLeak")
+    override fun init() {
+        super.init()
+        URL.setURLStreamHandlerFactory { protocol ->
+            if ("assets" == protocol) {
+                Handler()
+            } else null
+        }
+        object : AsyncTask<Void?, Void?, Void?>() {
             //ProgressDialog dialog = new ProgressDialog(parent);
-			List<Exception> errors = new ArrayList<>();
-
-
-
-
+            var errors: MutableList<Exception> = ArrayList()
+            lateinit var name : String
+            val width = parent.getResources().getDisplayMetrics().widthPixels / 2 - 150
+            val height = parent.getResources().getDisplayMetrics().heightPixels / 2 - 150
             /*
             @Override
             protected void onPreExecute() {
@@ -64,58 +61,72 @@ public class ExampleSceneLoader extends SceneLoader {
                 dialog.show();
             }
 */
-            @Override
-            protected Void doInBackground(Void... params) {
+            protected override fun doInBackground(vararg params: Void?): Void? {
                 try {
                     // Set up ContentUtils so referenced materials and/or textures could be find
-                    ContentUtils.setThreadActivity(parent);
-                    ContentUtils.provideAssets(parent);
-
+                    ContentUtils.setThreadActivity(parent)
+                    ContentUtils.provideAssets(parent)
                     try {
+                        val objects: List<Object3DData> = ArrayList()
+                        var obj53: Object3DData
+                        //name = intent.getStringExtra("name") ?: ""
+                        name = "for mom"
+                        var count = 0
+                        if (name != "") {
+                            var current_bouq: Bouquets = MyRead(name)
 
-                        List<Object3DData> objects = new ArrayList<>();
+                            for (i in current_bouq.current_flowers) {
+                                Log.i("!!!!" + count.toString(), (i.x - width).toString() + " " + (i.y - height).toString())
+                                Log.i("!!!!" + count.toString(), (kotlin.math.asin((i.x - width) / 800) * 57.296).toString() + " " + (kotlin.math.asin((i.y - height) / 800) * 57.296).toString())
+                                count++
+                                obj53 = Object3DBuilder.loadV5(
+                                    parent,
+                                    Uri.parse("assets://assets/models/tuple.obj")
+                                )
+                                obj53.centerAndScale(8.0f)
+                                obj53.position = floatArrayOf(0.006f * (i.x - width), -5f, 0.006f * (i.y - height))
+//                                obj53.rotation = floatArrayOf(kotlin.math.asin((i.x - width) / 5), 0f, kotlin.math.asin((i.y - width) / 5))
+                                obj53.rotation = floatArrayOf((kotlin.math.asin((i.y - height) / 800) * 57.296).toFloat(), (kotlin.math.asin((i.x - width) / 800) * 57.296).toFloat(), 0f)
+                                obj53.color = floatArrayOf(0.8f, 0.2f, 0.2f, 1.0f)
+                                // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
+                                addObject(obj53)
+                            }
+                        }
 
                         // this has heterogeneous faces
-                        Object3DData obj53;
-                        
-                        for (int i=0; i<6; i++){
-                            obj53 = Object3DBuilder.loadV5(parent, Uri.parse("assets://assets/models/tuple.obj"));
-                            obj53.centerAndScale(2.0f);
-                            obj53.setPosition(new float[] { 0.5f * i, 0f, 0f });
-                            obj53.setColor(new float[] { 1.0f, 1.0f, 1f, 1.0f });
-                            // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
-                            addObject(obj53);
-                        }
-                    } catch (Exception ex) {
-                        errors.add(ex);
-                    }
 
-                } catch (Exception ex) {
-                    errors.add(ex);
-                } finally{
-                    ContentUtils.setThreadActivity(null);
-                    ContentUtils.clearDocumentsProvided();
+                    } catch (ex: Exception) {
+                        errors.add(ex)
+                    }
+                } catch (ex: Exception) {
+                    errors.add(ex)
+                } finally {
+                    ContentUtils.setThreadActivity(null)
+                    ContentUtils.clearDocumentsProvided()
                 }
-                return null;
+                return null
             }
 
-
-            @Override
-            protected void onPostExecute(Void result) {
-                super.onPostExecute(result);
-//                if (dialog.isShowing()) {
+            override fun onPostExecute(result: Void?) {
+                super.onPostExecute(result)
+                //                if (dialog.isShowing()) {
 //                    dialog.dismiss();
 //                }
                 if (!errors.isEmpty()) {
-                    StringBuilder msg = new StringBuilder("There was a problem loading the data");
-                    for (Exception error : errors) {
-                        Log.e("Example", error.getMessage(), error);
-                        msg.append("\n" + error.getMessage());
+                    val msg = StringBuilder("There was a problem loading the data")
+                    for (error in errors) {
+                        Log.e("Example", error.message, error)
+                        msg.append(
+                            """
+    
+    ${error.message}
+    """.trimIndent()
+                        )
                     }
-                    Toast.makeText(parent.getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                    Toast.makeText(parent.applicationContext, msg, Toast.LENGTH_LONG).show()
                 }
             }
-		}.execute();
+        }.execute()
 
         // test loading collada object
         /*try {
@@ -129,5 +140,15 @@ public class ExampleSceneLoader extends SceneLoader {
             ContentUtils.setThreadActivity(null);
             ContentUtils.clearDocumentsProvided();
         }*/
-	}
+    }
+    fun MyRead(name : String) : Bouquets {
+        val gson = GsonBuilder().create()
+        val pref = parent.getSharedPreferences(name, Context.MODE_PRIVATE)
+        val raw : String? = pref.getString("Bouquet", null)
+        if (raw != null) {
+            val bouq = gson.fromJson(raw, Bouquets::class.java)
+            return bouq
+        }
+        return Bouquets("null")
+    }
 }
