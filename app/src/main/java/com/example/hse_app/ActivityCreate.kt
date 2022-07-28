@@ -92,16 +92,13 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener, View.OnClickLi
                 }
                 btnSave.setOnClickListener {
                     var edittext = view.findViewById<EditText>(R.id.idTVCourseDuration)
-                    current_bouquet.name = edittext.text.toString()
-                    if (current_bouquet.name !in bans && current_bouquet.name !in files.all_files) {
+                    if (edittext.text.toString() !in bans && edittext.text.toString() !in files.all_files && edittext.text.toString() != "") {
+                        current_bouquet.name = edittext.text.toString()
                         MySave(current_bouquet)
+                        val goto_main = Intent(this, MainActivity::class.java)
+                        startActivity(goto_main)
                     }
-                    else {
-                        TODO()
-                    }
-                    dialog.dismiss()
-                    val goto_main = Intent(this, MainActivity::class.java)
-                    startActivity(goto_main)
+
                 }
                 dialog.setCancelable(false) // false
                 dialog.setContentView(view)
