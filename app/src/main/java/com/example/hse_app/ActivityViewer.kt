@@ -13,7 +13,7 @@ class ActivityViewer : AppCompatActivity() {
         val toolbar : Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.apply {
-            title = "3D Viewer"
+            title = "Settings"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }

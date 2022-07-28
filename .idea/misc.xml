@@ -3,8 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Documents/IlyaG/bouqeut2/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.23233695652173914" />
-        <entry key="..\:/Documents/IlyaG/bouqeut2/app/src/main/res/layout/mytextview.xml" value="0.23233695652173914" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/drawable/searchview_background.xml" value="0.2985" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_create.xml" value="0.25" />
@@ -12,26 +10,28 @@
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_search.xml" value="0.25" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_view.xml" value="0.17831813576494426" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activity_viewer.xml" value="0.275" />
-        <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/activityinfo.xml" value="0.16" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.275" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/layout/mytextview.xml" value="0.13465952563121653" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/menu/menuview.xml" value="0.20347222222222222" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/menu/search.xml" value="0.275" />
-        <entry key="..\:/TS/hse-kotlin/app/src/main/res/mipmap-anydpi-v26/ic_carnation_icon.xml" value="0.196" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1735" />
         <entry key="..\:/TS/hse-kotlin/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1735" />
-        <entry key="..\:/Users/Student/StudioProjects/hse-kotlin/app/src/main/res/menu/menu.xml" value="0.2712962962962963" />
-        <entry key="..\:/Users/Student/StudioProjects/hse-kotlin/app/src/main/res/menu/menuview.xml" value="0.2712962962962963" />
         <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activity_create.xml" value="0.1" />
         <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activity_main2.xml" value="0.264" />
         <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activity_main3.xml" value="0.16458333333333333" />
         <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activity_search.xml" value="0.12291666666666666" />
         <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activity_view.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/activityinfo.xml" value="0.1" />
+        <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/bottom_sheet_delete.xml" value="0.1203125" />
         <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.4" />
+        <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/bottom_sheet_save_no_name.xml" value="0.14114583333333333" />
         <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/create_screen.xml" value="0.11197916666666667" />
+        <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/layout/mytextview.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/menu/menuview.xml" value="0.970873786407767" />
         <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/menu/search.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/andre/StudioProjects/hse-kotlin/app/src/main/res/mipmap-anydpi-v26/ic_chamomile._icon.xml" value="0.1" />
       </map>
     </option>
   </component>
