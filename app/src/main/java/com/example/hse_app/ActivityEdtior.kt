@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -18,6 +19,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
+import kotlin.math.pow
 
 
 class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
@@ -59,63 +61,73 @@ class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
             newView.layoutParams.height = 300
             newView.layoutParams.width = 300
             newView.setId(global_id)
+            all_id += global_id
             global_id += 1
             newView.setOnTouchListener(this)
             if (i.name == Flowers.rose) {
                 newView.setImageResource(R.drawable.rose)
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.rose
             } else if (i.name == Flowers.chamomile) {
                 newView.setImageResource(R.drawable.chamomile)
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.chamomile
             } else if (i.name == Flowers.carnation) {
                 newView.setImageResource(R.drawable.carnation)
                 newView.layoutParams.height = 320
                 newView.layoutParams.width = 320
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.carnation
             } else if (i.name == Flowers.chrysanthemum) {
                 newView.setImageResource(R.drawable.chrysanthemum)
                 newView.layoutParams.height = 340
                 newView.layoutParams.width = 340
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.chrysanthemum
             } else if (i.name == Flowers.peony) {
                 newView.setImageResource(R.drawable.peony)
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.peony
             } else if (i.name == Flowers.iris) {
                 newView.setImageResource(R.drawable.iris)
                 newView.layoutParams.height = 280
                 newView.layoutParams.width = 280
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.iris
             } else if (i.name == Flowers.lily) {
                 newView.setImageResource(R.drawable.lily)
                 newView.layoutParams.height = 280
                 newView.layoutParams.width = 280
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.lily
             } else if (i.name == Flowers.hortensia) {
                 newView.setImageResource(R.drawable.hortensia)
                 newView.layoutParams.height = 340
                 newView.layoutParams.width = 340
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.hortensia
             } else if (i.name == Flowers.sunflower) {
                 newView.setImageResource(R.drawable.sunflower)
                 newView.layoutParams.height = 380
                 newView.layoutParams.width = 380
                 newView.x = i.x
                 newView.y = i.y
-            }
-            else if (i.name == Flowers.gypsophila) {
+                all_types += Flowers.sunflower
+            } else if (i.name == Flowers.gypsophila) {
                 newView.setImageResource(R.drawable.gypsophila)
                 newView.layoutParams.height = 450
                 newView.layoutParams.width = 450
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.gypsophila
             }
             else if (i.name == Flowers.ruscus) {
                 newView.setImageResource(R.drawable.ruscus)
@@ -123,6 +135,7 @@ class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
                 newView.layoutParams.width = 500
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.ruscus
             }
             else if (i.name == Flowers.dianthus) {
                 newView.setImageResource(R.drawable.dianthus)
@@ -130,6 +143,7 @@ class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
                 newView.layoutParams.width = 400
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.dianthus
             }
             else if (i.name == Flowers.trachelium) {
                 newView.setImageResource(R.drawable.trachelium)
@@ -137,6 +151,7 @@ class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
                 newView.layoutParams.width = 320
                 newView.x = i.x
                 newView.y = i.y
+                all_types += Flowers.trachelium
             }
         }
     }
@@ -152,10 +167,11 @@ class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_save) {
-            for (i in 0 until current_bouquet.current_flowers.size) {
-                current_bouquet.current_flowers[i].x = findViewById<ImageView>(i + 1).x
-                current_bouquet.current_flowers[i].y = findViewById<ImageView>(i + 1).y
-            }
+//            for (i in 0 until current_bouquet.current_flowers.size) {
+//                current_bouquet.current_flowers[i].x = findViewById<ImageView>(i + 1).x
+//                current_bouquet.current_flowers[i].y = findViewById<ImageView>(i + 1).y
+//            }
+            current_bouquet = Bouquets(current_bouquet.name)
             for (i in 0 until all_id.size) {
                 var current_flower: Flower = Flower(
                     all_types[i],
@@ -163,6 +179,8 @@ class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
                     findViewById<ImageView>(all_id[i]).y,
                     findViewById<ImageView>(all_id[i]).height
                 )
+
+//                Log.i("SAVE1", current_)
                 if (all_types[i] == Flowers.rose) current_bouquet.cnt_flowers[0] += 1
                 else if (all_types[i] == Flowers.chamomile) current_bouquet.cnt_flowers[1] += 1
                 else if (all_types[i] == Flowers.carnation) current_bouquet.cnt_flowers[2] += 1
@@ -174,8 +192,9 @@ class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
                 else if (all_types[i] == Flowers.sunflower) current_bouquet.cnt_flowers[8] += 1
                 else if (all_types[i] == Flowers.ruscus) current_bouquet.cnt_flowers[9] += 1
                 else if (all_types[i] == Flowers.dianthus) current_bouquet.cnt_flowers[10] += 1
-                else if (all_types[i] == Flowers.trachelium) current_bouquet.cnt_flowers[10] += 1
+                else if (all_types[i] == Flowers.trachelium) current_bouquet.cnt_flowers[11] += 1
                 current_bouquet.current_flowers += current_flower
+                current_bouquet.all_cnt += 1
             }
             val dialog = BottomSheetDialog(this)
             val view = layoutInflater.inflate(R.layout.bottom_sheet_save_no_name, null)
@@ -353,7 +372,27 @@ class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
                 .y(event.rawY + dY)
                 .setDuration(0)
                 .start()
-            else -> return false
+            else -> {
+                val disp_centre_x = (this.getResources().getDisplayMetrics().widthPixels / 2) - 150
+                val disp_centre_y = (this.getResources().getDisplayMetrics().heightPixels / 2) - 150
+                if (((view.x - disp_centre_x).pow(2.0f) + (view.y - disp_centre_y).pow(2.0f)).pow(0.5f) < 400){
+                    Log.i("is out?", "False")
+                }
+                else{
+                    Log.i("is out?", "True")
+
+                    var create_layout: ConstraintLayout = findViewById(R.id.create_layout)
+                    view.setOnTouchListener(null)
+                    create_layout.removeView(view)
+                    current_bouquet.all_cnt -= 1
+                    val ind = all_id.indexOf(view.id)
+                    all_id.removeAt(ind)
+                    all_types.removeAt(ind)
+                    Log.i("!!!", ind.toString())
+                }
+                //Log.i("Radius is", ((view.x - disp_centre_x).pow(2.0f) + (view.y - disp_centre_y).pow(2.0f)).pow(0.5f).toString())
+                return false
+            }
         }
         return true
     }
@@ -364,6 +403,8 @@ class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
         pref.edit()
             .putString("Bouquet", gson.toJson(bouq))
             .apply()
+        //Log.i("SAVE", bouq.toString())
+        Log.i("SAVE", gson.toJson(bouq).toString())
     }
 
 }
