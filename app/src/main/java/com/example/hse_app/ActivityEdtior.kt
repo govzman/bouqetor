@@ -71,10 +71,14 @@ class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
                 newView.y = i.y
             } else if (i.name == Flowers.carnation) {
                 newView.setImageResource(R.drawable.carnation)
+                newView.layoutParams.height = 320
+                newView.layoutParams.width = 320
                 newView.x = i.x
                 newView.y = i.y
             } else if (i.name == Flowers.chrysanthemum) {
                 newView.setImageResource(R.drawable.chrysanthemum)
+                newView.layoutParams.height = 340
+                newView.layoutParams.width = 340
                 newView.x = i.x
                 newView.y = i.y
             } else if (i.name == Flowers.peony) {
@@ -83,38 +87,54 @@ class ActivityEditor : AppCompatActivity(), View.OnTouchListener {
                 newView.y = i.y
             } else if (i.name == Flowers.iris) {
                 newView.setImageResource(R.drawable.iris)
+                newView.layoutParams.height = 280
+                newView.layoutParams.width = 280
                 newView.x = i.x
                 newView.y = i.y
             } else if (i.name == Flowers.lily) {
                 newView.setImageResource(R.drawable.lily)
+                newView.layoutParams.height = 280
+                newView.layoutParams.width = 280
                 newView.x = i.x
                 newView.y = i.y
             } else if (i.name == Flowers.hortensia) {
                 newView.setImageResource(R.drawable.hortensia)
+                newView.layoutParams.height = 340
+                newView.layoutParams.width = 340
                 newView.x = i.x
                 newView.y = i.y
             } else if (i.name == Flowers.sunflower) {
                 newView.setImageResource(R.drawable.sunflower)
+                newView.layoutParams.height = 380
+                newView.layoutParams.width = 380
                 newView.x = i.x
                 newView.y = i.y
             }
             else if (i.name == Flowers.gypsophila) {
                 newView.setImageResource(R.drawable.gypsophila)
+                newView.layoutParams.height = 450
+                newView.layoutParams.width = 450
                 newView.x = i.x
                 newView.y = i.y
             }
             else if (i.name == Flowers.ruscus) {
                 newView.setImageResource(R.drawable.ruscus)
+                newView.layoutParams.height = 500
+                newView.layoutParams.width = 500
                 newView.x = i.x
                 newView.y = i.y
             }
             else if (i.name == Flowers.dianthus) {
                 newView.setImageResource(R.drawable.dianthus)
+                newView.layoutParams.height = 400
+                newView.layoutParams.width = 400
                 newView.x = i.x
                 newView.y = i.y
             }
             else if (i.name == Flowers.trachelium) {
                 newView.setImageResource(R.drawable.trachelium)
+                newView.layoutParams.height = 320
+                newView.layoutParams.width = 320
                 newView.x = i.x
                 newView.y = i.y
             }
