@@ -80,9 +80,16 @@ class ActivityView : AppCompatActivity() {
             startActivity(myCreator)
         }
         else if (item.itemId == R.id.action_3d) {
-            val myViewer = Intent(this, ModelActivity::class.java)
-            myViewer.putExtra("name", name)
-            startActivity(myViewer)
+            val myEdit = Intent(this, ModelActivity::class.java)
+            myEdit.putExtra("name", name)
+            startActivity(myEdit)
+        }
+        else if (item.itemId == R.id.action_edit) {
+            val myEdit = Intent(this, ActivityEditor::class.java)
+            myEdit.putExtra("name", name)
+            val gson = GsonBuilder().create()
+            myEdit.putExtra("bouq", gson.toJson(current_bouq))
+            startActivity(myEdit)
         }
         else if (item.itemId == R.id.action_erase) {
             val dialog = BottomSheetDialog(this)

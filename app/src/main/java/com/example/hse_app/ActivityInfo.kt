@@ -30,23 +30,22 @@ class ActivityInfo : AppCompatActivity() {
         }
         var txtv : TextView = findViewById(R.id.textView)
         var cur_t : String = ""
-        var cnt = 0
+        var cur_list : MutableList<Int> = ArrayList()
+        for (i in 0 until Flowers.values().size) cur_list += 0
         var price = 0
-        for (i in Flowers_print.values()) {
-            try {
-                var cur_f: String = ""
-                cur_f += i.toString()
-                cur_f += ": "
-                cur_f += cur_b.cnt_flowers[cnt].toString()
-                price += cur_b.cnt_flowers[cnt] * costs[cnt]
-                cur_f += "\n"
-                if (cur_b.cnt_flowers[cnt] != 0) cur_t += cur_f
-                ++cnt
-            }
-            catch(e : Exception) {
-                break
-            }
+        for (i in cur_b.current_flowers) {
+            cur_list[Flowers.values().indexOf(i.name)] += 1
         }
+        for (i in 0 until cur_list.size) {
+            var cur_f: String = ""
+            cur_f += Flowers_print.values()[i].toString()
+            cur_f += ": "
+            cur_f += cur_list[i].toString()
+            price += cur_list[i] * costs[i]
+            cur_f += "\n"
+            if (cur_list[i] != 0) cur_t += cur_f
+        }
+        cur_t += "\n"
         cur_t += "Total price: "
         cur_t += price.toString()
         cur_t += "₽"
