@@ -1,6 +1,5 @@
 package com.example.hse_app
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -86,7 +85,7 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener, View.OnClickLi
                 val btnSave = view.findViewById<Button>(R.id.idBtnAccept)
                 val txtv = view.findViewById<TextView>(R.id.idTVCourseTracks)
                 txtv.setText("Total flowers: ${current_bouquet.all_cnt}")
-
+                btnClose.text = "Close"
                 btnClose.setOnClickListener {
                     dialog.dismiss()
                 }
@@ -116,6 +115,52 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener, View.OnClickLi
                 all_types.removeLast()
                 Log.i("!!!", all_id.toString())
                 Log.i("!!!", all_types.toString())
+            }
+        }
+        else if (item.itemId == android.R.id.home){
+            Log.i("BACK", "HOME")
+
+            if (all_id.size != 0) {
+                for (i in 0 until all_id.size) {
+                    var current_flower: Flower = Flower(
+                        all_types[i],
+                        findViewById<ImageView>(all_id[i]).x,
+                        findViewById<ImageView>(all_id[i]).y,
+                        findViewById<ImageView>(all_id[i]).height
+                    )
+                    if (all_types[i] == Flowers.rose) current_bouquet.cnt_flowers[0] += 1
+                    else if (all_types[i] == Flowers.chamomile) current_bouquet.cnt_flowers[1] += 1
+                    else if (all_types[i] == Flowers.carnation) current_bouquet.cnt_flowers[2] += 1
+                    else if (all_types[i] == Flowers.chrysanthemum) current_bouquet.cnt_flowers[3] += 1
+                    else if (all_types[i] == Flowers.peony) current_bouquet.cnt_flowers[4] += 1
+                    else if (all_types[i] == Flowers.iris) current_bouquet.cnt_flowers[5] += 1
+                    else if (all_types[i] == Flowers.lily) current_bouquet.cnt_flowers[6] += 1
+                    else if (all_types[i] == Flowers.hortensia) current_bouquet.cnt_flowers[7] += 1
+                    else if (all_types[i] == Flowers.sunflower) current_bouquet.cnt_flowers[8] += 1
+                    else if (all_types[i] == Flowers.ruscus) current_bouquet.cnt_flowers[9] += 1
+                    else if (all_types[i] == Flowers.dianthus) current_bouquet.cnt_flowers[10] += 1
+                    else if (all_types[i] == Flowers.trachelium) current_bouquet.cnt_flowers[10] += 1
+                    current_bouquet.current_flowers += current_flower
+                }
+                var autosafe_id = 0
+                while ("Autosave " + autosafe_id.toString() in files.all_files){
+                    autosafe_id++
+                }
+                current_bouquet.name = "Autosave " + autosafe_id.toString()
+                MySave(current_bouquet)
+                val goto_main = Intent(this, MainActivity::class.java)
+                startActivity(goto_main)
+
+            }
+            else {
+                val intent = Intent(
+                    this,
+                    MainActivity::class.java
+                )
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                finish()
+                return true
             }
         }
         else if (item.itemId != R.id.filter_flowers) {

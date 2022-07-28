@@ -114,7 +114,6 @@ class ExampleSceneLoader(modelActivity: ModelActivity?, val name_f: String = "")
                                 val h = when (i.name){
                                     Flowers.chamomile -> -1.2f
                                     Flowers.rose -> -1.8f
-                                    //Flowers.lily -> -2.5f
                                     else -> -3f
                                 }
                                 obj53 = Object3DBuilder.loadV5(
