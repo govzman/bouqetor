@@ -80,29 +80,6 @@ class ExampleSceneLoader(modelActivity: ModelActivity?, val name_f: String = "")
                         if (name != "") {
                             var current_bouq: Bouquets = MyRead(name)
 
-                            obj53 = Object3DBuilder.loadV5(
-                                parent,
-                                Uri.parse("assets://assets/models/tuple2.obj")
-                            )
-                            obj53.centerAndScale(8.0f)
-                            obj53.position = floatArrayOf(0f, -3f, 0f)
-                            //obj53.rotation = floatArrayOf(kotlin.math.asin((i.x - width) / 5), 0f, kotlin.math.asin((i.y - width) / 5))
-                            //obj53.rotation = floatArrayOf((kotlin.math.asin((i.x - width) / 800) * 57.296).toFloat(), 0f, (kotlin.math.asin((i.y - height) / 800) * 57.296).toFloat())
-                            obj53.color = floatArrayOf(1f, 1f, 1f, 1.0f)
-                            // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
-                            addObject(obj53)
-
-                            obj53 = Object3DBuilder.loadV5(
-                                parent,
-                                Uri.parse("assets://assets/models/tuple2.obj")
-                            )
-                            obj53.centerAndScale(8.0f)
-                            obj53.position = floatArrayOf(0f, -3f, 0f)
-                            //obj53.rotation = floatArrayOf(kotlin.math.asin((i.x - width) / 5), 0f, kotlin.math.asin((i.y - width) / 5))
-                            obj53.rotation = floatArrayOf(45f, 0f, 0f)
-                            obj53.color = floatArrayOf(0f, 0f, 0f, 1.0f)
-                            // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
-                            addObject(obj53)
 
                             for (i in current_bouq.current_flowers) {
                                 Log.i("!!!!" + count.toString(), (i.x - width).toString() + " " + (i.y - height).toString())
@@ -115,7 +92,9 @@ class ExampleSceneLoader(modelActivity: ModelActivity?, val name_f: String = "")
                                 obj53.centerAndScale(8.0f)
                                 obj53.position = floatArrayOf(0.006f * (i.x - width), -3f, 0.006f * (i.y - height))
                                 //obj53.rotation = floatArrayOf(kotlin.math.asin((i.x - width) / 5), 0f, kotlin.math.asin((i.y - width) / 5))
-                                obj53.rotation = floatArrayOf((kotlin.math.asin((i.x - width) / 800) * 57.296).toFloat(), 0f, 0f)
+                                // obj53.rotation = floatArrayOf((kotlin.math.asin((i.y - height) / 1200) * 57.296).toFloat(), 0f, 0f)
+                                //obj53.rotation = floatArrayOf(0f, 0f, -(kotlin.math.asin((i.x - width) / 1200) * 57.296).toFloat())
+                                obj53.rotation = floatArrayOf((kotlin.math.asin((i.y - height) / 900) * 57.296).toFloat(), 0f, -(kotlin.math.asin((i.x - width) / 900) * 57.296).toFloat())
                                 obj53.color = floatArrayOf(1f, 0.6f, 0.6f, 1.0f)
                                 // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
                                 addObject(obj53)
