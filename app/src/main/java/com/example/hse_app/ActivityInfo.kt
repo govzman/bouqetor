@@ -45,6 +45,7 @@ class ActivityInfo : AppCompatActivity() {
             cur_f += "\n"
             if (cur_list[i] != 0) cur_t += cur_f
         }
+        cur_t += "\n"
         cur_t += "Total price: "
         cur_t += price.toString()
         cur_t += "₽"

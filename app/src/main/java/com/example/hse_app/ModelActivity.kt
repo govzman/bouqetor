@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -49,6 +50,8 @@ class ModelActivity : AppCompatActivity() {
         private set
     var scene: SceneLoader? = null
         private set
+    lateinit var name : String
+
     private var handler: Handler? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +80,7 @@ class ModelActivity : AppCompatActivity() {
         handler = Handler(mainLooper)
 
         // Create our 3D sceneario
-        var name : String = intent.getStringExtra("name") ?: ""
+        name = intent.getStringExtra("name") ?: ""
         try {
             scene = ExampleSceneLoader(this, name)
             (scene as ExampleSceneLoader).init()
@@ -250,4 +253,14 @@ class ModelActivity : AppCompatActivity() {
         private const val FULLSCREEN_DELAY = 10000
     }
      */
+    override fun onOptionsItemSelected(item : MenuItem) : Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                val new_activity = Intent(this@ModelActivity, ActivityView::class.java)
+                new_activity.putExtra("name", name)
+                startActivity(new_activity)
+            }
+        }
+        return true
+    }
 }

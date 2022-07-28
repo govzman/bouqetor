@@ -28,12 +28,12 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ActivityViewer"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ActivityView"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ModelActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".ActivityView"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
