@@ -85,6 +85,7 @@ class ExampleSceneLoader(modelActivity: ModelActivity?, val name_f: String = "")
 //                                Log.i("!!!!" + count.toString(), (kotlin.math.asin((i.x - width) / 800) * 57.296).toString() + " " + (kotlin.math.asin((i.y - height) / 800) * 57.296).toString())
                                 val filename = when (i.name) {
                                     Flowers.chamomile -> "assets://assets/models/sunflower.obj"
+                                    Flowers.rose -> "assets://assets/models/rose.obj"
                                     else -> "assets://assets/models/tuple2.obj"
                                 }
                                 val size = when (i.name){
@@ -94,6 +95,7 @@ class ExampleSceneLoader(modelActivity: ModelActivity?, val name_f: String = "")
                                 }
                                 val color = when (i.name){
                                     Flowers.chamomile -> floatArrayOf(1f, 1f, 1f, 1.0f)
+                                    Flowers.rose -> floatArrayOf(1f, 0f, 0f, 1.0f)
                                     else -> floatArrayOf(1f, 0.6f, 0.6f, 1.0f)
                                 }
                                 obj53 = Object3DBuilder.loadV5(
