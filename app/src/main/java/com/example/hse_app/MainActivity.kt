@@ -28,12 +28,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(myBouquets)
     }
     fun onViewer(view : View) {
-        val myViewer = Intent(this, ModelActivity::class.java)
+        val myViewer = Intent(this, ActivityViewer::class.java)
         startActivity(myViewer)
-    }
-    fun on_view_tmp(view : View) {
-        val myBouquets = Intent(this, ActivityView::class.java)
-        startActivity(myBouquets)
     }
     fun LoadFiles() : Files {
         val gson = GsonBuilder().create()

@@ -35,7 +35,7 @@
         <activity
             android:name=".ActivityViewer"
             android:exported="false"
-            android:parentActivityName=".ActivityView"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ModelActivity"
