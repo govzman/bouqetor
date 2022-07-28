@@ -98,7 +98,17 @@ class ExampleSceneLoader(modelActivity: ModelActivity?, val name_f: String = "")
                                 val color = when (i.name){
                                     Flowers.chamomile -> floatArrayOf(1f, 1f, 1f, 1.0f)
                                     Flowers.rose -> floatArrayOf(1f, 0f, 0f, 1.0f)
+                                    Flowers.carnation -> floatArrayOf(1f, 0.2f, 0.2f, 1.0f)
+                                    Flowers.chrysanthemum -> floatArrayOf(0.86f, 0.59f, 0.75f, 1.0f)
+                                    Flowers.peony -> floatArrayOf(0.94f, 0.74f, 0.83f, 1.0f)
+                                    Flowers.iris -> floatArrayOf(0.52f, 0.3f, 0.6f, 1.0f)
                                     Flowers.lily -> floatArrayOf(1f, 0.5f, 0f, 1.0f)
+                                    Flowers.hortensia -> floatArrayOf(0.53f, 0.61f, 0.8f, 1.0f)
+                                    Flowers.sunflower -> floatArrayOf(0.9f, 0.9f, 0f, 1.0f)
+                                    Flowers.gypsophila -> floatArrayOf(0.9f, 0.9f, 0.9f, 1.0f)
+                                    Flowers.ruscus -> floatArrayOf(0.22f, 0.37f, 0.13f, 1.0f)
+                                    Flowers.dianthus -> floatArrayOf(0.62f, 0.16f, 0.26f, 1.0f)
+                                    Flowers.trachelium -> floatArrayOf(0.47f, 0.45f, 0.76f, 1.0f)
                                     else -> floatArrayOf(1f, 0.6f, 0.6f, 1.0f)
                                 }
                                 val h = when (i.name){
