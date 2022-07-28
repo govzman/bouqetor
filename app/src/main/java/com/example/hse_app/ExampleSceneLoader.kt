@@ -98,12 +98,17 @@ class ExampleSceneLoader(modelActivity: ModelActivity?, val name_f: String = "")
                                     Flowers.rose -> floatArrayOf(1f, 0f, 0f, 1.0f)
                                     else -> floatArrayOf(1f, 0.6f, 0.6f, 1.0f)
                                 }
+                                val h = when (i.name){
+                                    Flowers.chamomile -> -3f
+                                    Flowers.rose -> -1.8f
+                                    else -> -3f
+                                }
                                 obj53 = Object3DBuilder.loadV5(
                                     parent,
                                     Uri.parse(filename)
                                 )
                                 obj53.centerAndScale(size)
-                                obj53.position = floatArrayOf(0.006f * (i.x - width), -3f, 0.006f * (i.y - height))
+                                obj53.position = floatArrayOf(0.006f * (i.x - width), h, 0.006f * (i.y - height))
                                 //obj53.rotation = floatArrayOf(kotlin.math.asin((i.x - width) / 5), 0f, kotlin.math.asin((i.y - width) / 5))
                                 // obj53.rotation = floatArrayOf((kotlin.math.asin((i.y - height) / 1200) * 57.296).toFloat(), 0f, 0f)
                                 //obj53.rotation = floatArrayOf(0f, 0f, -(kotlin.math.asin((i.x - width) / 1200) * 57.296).toFloat())

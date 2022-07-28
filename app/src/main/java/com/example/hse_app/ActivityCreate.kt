@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
@@ -18,6 +19,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.GsonBuilder
+import kotlin.math.pow
 
 
 class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
@@ -113,6 +115,8 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                 current_bouquet.all_cnt -= 1
                 all_id.removeLast()
                 all_types.removeLast()
+                Log.i("!!!", all_id.toString())
+                Log.i("!!!", all_types.toString())
             }
         }
         else if (item.itemId != R.id.filter_flowers) {
@@ -260,7 +264,27 @@ class ActivityCreate : AppCompatActivity(), View.OnTouchListener {
                 .y(event.rawY + dY)
                 .setDuration(0)
                 .start()
-            else -> return false
+            else -> {
+                val disp_centre_x = (this.getResources().getDisplayMetrics().widthPixels / 2) - 150
+                val disp_centre_y = (this.getResources().getDisplayMetrics().heightPixels / 2) - 150
+                if (((view.x - disp_centre_x).pow(2.0f) + (view.y - disp_centre_y).pow(2.0f)).pow(0.5f) < 400){
+                    Log.i("is out?", "False")
+                }
+                else{
+                    Log.i("is out?", "True")
+
+                    var create_layout: ConstraintLayout = findViewById(R.id.create_layout)
+                    view.setOnTouchListener(null)
+                    create_layout.removeView(view)
+                    current_bouquet.all_cnt -= 1
+                    val ind = all_id.indexOf(view.id)
+                    all_id.removeAt(ind)
+                    all_types.removeAt(ind)
+                    Log.i("!!!", ind.toString())
+                }
+                //Log.i("Radius is", ((view.x - disp_centre_x).pow(2.0f) + (view.y - disp_centre_y).pow(2.0f)).pow(0.5f).toString())
+                return false
+            }
         }
         return true
     }
