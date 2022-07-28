@@ -76,26 +76,39 @@ class ExampleSceneLoader(modelActivity: ModelActivity?, val name_f: String = "")
                         var obj53: Object3DData
                         //name = intent.getStringExtra("name") ?: ""
                         var name : String = name_f
-                        var count = 0
                         if (name != "") {
                             var current_bouq: Bouquets = MyRead(name)
 
 
                             for (i in current_bouq.current_flowers) {
-                                Log.i("!!!!" + count.toString(), (i.x - width).toString() + " " + (i.y - height).toString())
-                                Log.i("!!!!" + count.toString(), (kotlin.math.asin((i.x - width) / 800) * 57.296).toString() + " " + (kotlin.math.asin((i.y - height) / 800) * 57.296).toString())
-                                count++
+//                                Log.i("!!!!" + count.toString(), (i.x - width).toString() + " " + (i.y - height).toString())
+//                                Log.i("!!!!" + count.toString(), (kotlin.math.asin((i.x - width) / 800) * 57.296).toString() + " " + (kotlin.math.asin((i.y - height) / 800) * 57.296).toString())
+                                val filename = when (i.name) {
+                                    Flowers.chamomile -> "assets://assets/models/sunflower.obj"
+                                    Flowers.rose -> "assets://assets/models/rose.obj"
+                                    else -> "assets://assets/models/tuple2.obj"
+                                }
+                                val size = when (i.name){
+                                    Flowers.chamomile -> 5.0f
+                                    Flowers.rose -> 5.0f
+                                    else -> 8.0f
+                                }
+                                val color = when (i.name){
+                                    Flowers.chamomile -> floatArrayOf(1f, 1f, 1f, 1.0f)
+                                    Flowers.rose -> floatArrayOf(1f, 0f, 0f, 1.0f)
+                                    else -> floatArrayOf(1f, 0.6f, 0.6f, 1.0f)
+                                }
                                 obj53 = Object3DBuilder.loadV5(
                                     parent,
-                                    Uri.parse("assets://assets/models/tuple2.obj")
+                                    Uri.parse(filename)
                                 )
-                                obj53.centerAndScale(8.0f)
+                                obj53.centerAndScale(size)
                                 obj53.position = floatArrayOf(0.006f * (i.x - width), -3f, 0.006f * (i.y - height))
                                 //obj53.rotation = floatArrayOf(kotlin.math.asin((i.x - width) / 5), 0f, kotlin.math.asin((i.y - width) / 5))
                                 // obj53.rotation = floatArrayOf((kotlin.math.asin((i.y - height) / 1200) * 57.296).toFloat(), 0f, 0f)
                                 //obj53.rotation = floatArrayOf(0f, 0f, -(kotlin.math.asin((i.x - width) / 1200) * 57.296).toFloat())
                                 obj53.rotation = floatArrayOf((kotlin.math.asin((i.y - height) / 900) * 57.296).toFloat(), 0f, -(kotlin.math.asin((i.x - width) / 900) * 57.296).toFloat())
-                                obj53.color = floatArrayOf(1f, 0.6f, 0.6f, 1.0f)
+                                obj53.color = color
                                 // obj53.setDrawMode(GLES20.GL_TRIANGLE_FAN);
                                 addObject(obj53)
                             }
