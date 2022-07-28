@@ -86,21 +86,25 @@ class ExampleSceneLoader(modelActivity: ModelActivity?, val name_f: String = "")
                                 val filename = when (i.name) {
                                     Flowers.chamomile -> "assets://assets/models/sunflower.obj"
                                     Flowers.rose -> "assets://assets/models/rose.obj"
+                                    Flowers.lily -> "assets://assets/models/lily.obj"
                                     else -> "assets://assets/models/tuple2.obj"
                                 }
                                 val size = when (i.name){
-                                    Flowers.chamomile -> 5.0f
+                                    Flowers.chamomile -> 3.0f
                                     Flowers.rose -> 5.0f
+                                    Flowers.lily -> 7f
                                     else -> 8.0f
                                 }
                                 val color = when (i.name){
                                     Flowers.chamomile -> floatArrayOf(1f, 1f, 1f, 1.0f)
                                     Flowers.rose -> floatArrayOf(1f, 0f, 0f, 1.0f)
+                                    Flowers.lily -> floatArrayOf(1f, 0.5f, 0f, 1.0f)
                                     else -> floatArrayOf(1f, 0.6f, 0.6f, 1.0f)
                                 }
                                 val h = when (i.name){
-                                    Flowers.chamomile -> -3f
+                                    Flowers.chamomile -> -1.2f
                                     Flowers.rose -> -1.8f
+                                    Flowers.lily -> -2.5f
                                     else -> -3f
                                 }
                                 obj53 = Object3DBuilder.loadV5(
