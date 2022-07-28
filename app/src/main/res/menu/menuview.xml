@@ -7,6 +7,11 @@
         android:title="3D viewer"
         android:icon="@drawable/ic_3d"/>
     <item
+        android:id="@+id/action_edit"
+        app:showAsAction="always"
+        android:title="Edit bouquet"
+        android:icon="@drawable/ic_edit"/>
+    <item
         android:id="@+id/action_info"
         app:showAsAction="never"
         android:title="Information"/>
