@@ -29,13 +29,16 @@ class ActivityInfo : AppCompatActivity() {
             cur_b = gson.fromJson(raw, Bouquets::class.java)
         }
         var txtv : TextView = findViewById(R.id.textView)
+        var cur_t : String = ""
         var cur_list : MutableList<Int> = ArrayList()
         for (i in 0 until Flowers.values().size) cur_list += 0
-        var cur_t : String = ""
         var price = 0
+        for (i in cur_b.current_flowers) {
+            cur_list[Flowers.values().indexOf(i.name)] += 1
+        }
         for (i in 0 until cur_list.size) {
             var cur_f: String = ""
-            cur_f += Flowers.values()[i].toString()
+            cur_f += Flowers_print.values()[i].toString()
             cur_f += ": "
             cur_f += cur_list[i].toString()
             price += cur_list[i] * costs[i]
