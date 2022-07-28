@@ -61,7 +61,7 @@
         android:layout_width="163dp"
         android:layout_height="0dp"
         android:layout_marginStart="124dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="300dp"
         android:onClick="onApply"
         android:text="Apply"
         app:cornerRadius="40dp"
