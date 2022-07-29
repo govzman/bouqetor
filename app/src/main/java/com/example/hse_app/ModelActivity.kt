@@ -10,6 +10,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -102,6 +103,8 @@ class ModelActivity : AppCompatActivity() {
             var gLView = ModelSurfaceView(this)
             var create_layout: ConstraintLayout = findViewById(R.id.create_layout)
             create_layout.addView(gLView)
+            val kekk = findViewById<Button>(R.id.button2)
+            kekk.visibility = View.INVISIBLE
             //create_layout.addView(gLView)
             //gLView.setId(1)
             //setContentView(create_layout)

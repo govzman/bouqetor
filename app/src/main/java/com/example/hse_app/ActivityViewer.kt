@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.widget.Toolbar
 
@@ -18,6 +19,8 @@ class ActivityViewer : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
+        val kekk = findViewById<Button>(R.id.button2)
+        kekk.visibility = View.VISIBLE
     }
     fun onApply(view : View) {
         var edittext = findViewById<EditText>(R.id.idTVCourseDuration)
